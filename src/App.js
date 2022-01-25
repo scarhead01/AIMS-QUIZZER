@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Sidebar from './components/Sidebar';
+import Main from './components/Main';
+import { Routes, Route } from 'react-router-dom';
+import styled from "styled-components";
+const Containers=styled.div`
+ display: grid; 
+ background: #E1C9FF;
+grid-template-columns: 1fr 5fr;
+grid-template-areas:"Sidebar Main";
+
+gap: 0px;
+
+
+height: 100%;
+
+
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#120835",endColorstr="#030018",GradientType=1);
+`
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Containers>
+   <Sidebar/>
+   <Main/>
+  
+  </Containers>
   );
 }
 
