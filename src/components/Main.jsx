@@ -12,9 +12,18 @@ import Game from '../pages/Game';
 import Find from '../quiSubPages/Findtheingredients/Find';
 import Guess from '../quiSubPages/GuessthePicture/Guess';
 import Quiz from '../quiSubPages/QuizGame/Quiz';
+import FindMenus from '../quiSubPages/Findtheingredients/FindMenus';
+import GuessMenus from '../quiSubPages/GuessthePicture/GuessMenus';
+import QuizMenus from '../quiSubPages/QuizGame/QuizMenus';
+import FindGames from '../quiSubPages/Findtheingredients/FindGames';
+import FindGamesHard from '../quiSubPages/Findtheingredients/FindGamesHard';
+import GuessGameEasy from '../quiSubPages/GuessthePicture/GuessGameEasy';
+import GuessGameHard from '../quiSubPages/GuessthePicture/GuessGameHard';
+import MainQuiz from '../quiSubPages/QuizGame/MainQuiz';
 const MainCon = styled.div`
 grid-area: Main;
-
+justify-content: center;
+align-items: center;
 height: 100vh;
 background: linear-gradient(180deg, #5A00CC 0%, #2B0062 100%);
 box-shadow: 4px 5px 4px 4px rgba(0, 0, 0, 0.25);
@@ -46,6 +55,20 @@ const Main = () => {
        <Route path="/game/find" element={<Find />} />
        <Route path="/game/guess" element={<Guess />} />
        <Route path="/game/quiz" element={<Quiz />} />
+       <Route path="/game/find/findmenu/:diffs/:cats" element={<FindMenus />} />
+       <Route path="/game/guess/guessmenu/:diffs/:cats" element={<GuessMenus />} />
+       {/* <Route path="/game/find/findmenu/Hard" element={<FindMenus />} /> */}
+       <Route path="/game/guess/guessmenu" element={<GuessMenus />} />
+       <Route path="/game/quiz/quizmenu" element={<QuizMenus />} />
+       <Route path="/game/find/findmenu/Easy/:cats/findgames" element={<FindGames />} />
+       <Route path="/game/find/findmenu/Hard/:cats/findgames" element={<FindGamesHard />} />
+       <Route path="/game/guess/guessmenu/Easy/:cats/guessgame" element={<GuessGameEasy />} />
+       <Route path="/game/guess/guessmenu/Hard/:cats/guessgame" element={<GuessGameHard />} />
+       <Route path="/game/quiz/quizmenu/quiz" element={<MainQuiz />} />
+ 
+       
+       
+   
    </Routes>
       
       {/* <Svg1>

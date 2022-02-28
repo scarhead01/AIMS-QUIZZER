@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from '../components/Modal';
 import Modal2 from '../components/Modal2';
@@ -7,6 +7,10 @@ import Modal2 from '../components/Modal2';
 const Game = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
+  const navigate=useNavigate();
+  const Quiz = () => {
+    navigate("/game/quiz/quizmenu");
+  }
   return <QuizCon>
     <QuizMenu to="/game/find"  onClick={() => {
           setModalOpen(true);
@@ -20,9 +24,7 @@ const Game = () => {
         <h1>Guess the Picture</h1>
     </QuizMenu>
     <QuizMenu   className="openModalBtn"
-        onClick={() => {
-          setModalOpen(true);
-        }}>
+       onClick={Quiz}>
         <h1>Quiz</h1>
     </QuizMenu>
     {modalOpen && <Modal setOpenModal={setModalOpen} />}
