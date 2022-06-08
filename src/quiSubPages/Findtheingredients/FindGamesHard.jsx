@@ -30,7 +30,7 @@ const FindGamesHard = () => {
                   )} 
                   </IngredientsCon>
                   <BasketPic src={basket}onClick={() => {
-          setModalOpen(true);}}/>
+          setModalOpen(true);}} />
             <Submit>Submit</Submit>
   </FindGamesHardCon>;
   

@@ -1,30 +1,48 @@
-import React , {useState} from 'react';
+import React , {useContext, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from '../components/Modal';
 import Modal2 from '../components/Modal2';
-
+import { AuthContext } from '../context/auth';
+import FindIcon from '../images/findIngredients2.png';
+import GuessIcon from '../images/guessIcon.png'
+import QuizIcon from '../images/quizIcon.png'
 const Game = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
+  const [hover, setHover] = useState("")
   const navigate=useNavigate();
+
+  const ImgHover =(food) =>{
+    setHover(food);
+  }
+  const ImgnoHover =(drink) =>{
+    setHover(drink);
+  }
+
   const Quiz = () => {
     navigate("/game/quiz/quizmenu");
   }
+  const { user } = useContext(AuthContext)
   return <QuizCon>
     <QuizMenu to="/game/find"  onClick={() => {
           setModalOpen(true);
-        }}>
-     <h1>Find the Ingredients</h1>
+          console.log(user)
+        }} onMouseOver={ImgHover.bind(this,"Find")} onMouseLeave={ImgnoHover.bind(this,"Find")} >
+           <CatIcon src={FindIcon} className={hover === "Find" ? "active":""}  />
+       
+             <h1>Find the Ingredients</h1>
       
     </QuizMenu>
     <QuizMenu to="/game/guess"  onClick={() => {
-          setModalOpen2(true);
-        }}>
+          setModalOpen2(true); 
+        }} onMouseOver={ImgHover.bind(this,"Guess")} onMouseLeave={ImgnoHover.bind(this,"Guess")} >
+           <CatIcon src={GuessIcon} className={hover === "Guess" ? "active":""}  />
         <h1>Guess the Picture</h1>
     </QuizMenu>
     <QuizMenu   className="openModalBtn"
-       onClick={Quiz}>
+       onClick={Quiz} onMouseOver={ImgHover.bind(this,"Quiz")} onMouseLeave={ImgnoHover.bind(this,"Quiz")} >
+         <CatIcon src={QuizIcon} className={hover === "Quiz" ? "active":""}  />
         <h1>Quiz</h1>
     </QuizMenu>
     {modalOpen && <Modal setOpenModal={setModalOpen} />}
@@ -44,20 +62,92 @@ height: 205px;
 left: 451px;
 top: 169px;
 margin: auto;
-background: linear-gradient(180.12deg, rgba(210, 0, 244, 0.328) 3.98%, rgba(225, 43, 255, 0.496) 47.12%);
-mix-blend-mode: lighten;
+background: linear-gradient(180deg, #ca9bff 0%, #c091ff 100%);
+
 border-radius: 20px;
 justify-content: center;
 align-items: center;
 text-decoration: none;
 & h1{
-  color: #f4c8ff;
-  margin: auto;
+  color: #e6ceec;
+  //margin: auto;
   font-size: 18px;
  position: relative;
   text-align: center;
-  top: 140px;
+  
  
 }
 `
+
+const CatIcon = styled.img`
+position: relative;
+margin: auto ;
+
+height: 220px ;
+width: 200px;
+&.active {
+	-webkit-animation: wobble-hor-bottom 1s both;
+	        animation: wobble-hor-bottom 1s both;
+}
+ @-webkit-keyframes wobble-hor-bottom {
+  0%,
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+  15% {
+    -webkit-transform: translateX(-30px) rotate(-6deg);
+            transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    -webkit-transform: translateX(15px) rotate(6deg);
+            transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    -webkit-transform: translateX(-15px) rotate(-3.6deg);
+            transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    -webkit-transform: translateX(9px) rotate(2.4deg);
+            transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    -webkit-transform: translateX(-6px) rotate(-1.2deg);
+            transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
+@keyframes wobble-hor-bottom {
+  0%,
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+  15% {
+    -webkit-transform: translateX(-30px) rotate(-6deg);
+            transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    -webkit-transform: translateX(15px) rotate(6deg);
+            transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    -webkit-transform: translateX(-15px) rotate(-3.6deg);
+            transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    -webkit-transform: translateX(9px) rotate(2.4deg);
+            transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    -webkit-transform: translateX(-6px) rotate(-1.2deg);
+            transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
+
+`
+
 export default Game;

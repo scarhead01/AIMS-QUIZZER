@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import kazuha from '../images/kazuha.jpg';
-
+import {IoStatsChartSharp} from "react-icons/io5";
+import {BiMedal} from "react-icons/bi";
 
 const Dashboard = () => {
+
+    const [loginData, setLoginData] = useState(
+        localStorage.getItem('loginData')
+          ? JSON.parse(localStorage.getItem('loginData'))
+          : null
+      );
+
     return <DashboardCon>
         <StatCon>
-          <Profilepic src={kazuha}/>
+          <Profilepic src={loginData? loginData.picture:kazuha}/>
   
-          <ProfileName> Kazuha
-              <h5>@kkazuha</h5>
+          <ProfileName>{loginData? loginData.name: "Kazuha"}
+              <h5>{loginData? loginData.email: "@kkazuha"}</h5>
               <h5 className='course'>Hospitality Management</h5>
               <h5 className='section'>BSHM-32A1</h5>
           </ProfileName>
           <Profilestat>
-              <h6>Stats</h6>
+              <h6>Stats</h6><Icon><IoStatsChartSharp /></Icon>
               <h6 className='level'>Level</h6>
               <h6 className='levelNum'>10</h6>
               <h6 className='points'>Points</h6>
@@ -23,7 +31,7 @@ const Dashboard = () => {
           </Profilestat>
           <ProfileRank>
               <h6>Ranks</h6>
-              <h6 className='course'>Course Rank</h6>
+              <h6 className='course'>Course Rank</h6><Icon className = "rank"><BiMedal /></Icon>
               <h6 className='courseNum'>1<span>st</span></h6>
               <h6 className='section'>Section Rank</h6>
               <h6 className='sectionNum'>1<span>st</span></h6>
@@ -42,25 +50,30 @@ const Dashboard = () => {
   
 
 const DashboardCon = styled.div`
-margin: auto;
+
+display:block ;
+justify-content:center ;
+align-items:center ;
+width:80vw;
+
+max-height:100vh;
+overflow-y: auto;
 `
 const StatCon = styled.div`
 position: relative;
-margin: auto;
-width: 60%;
-height: 47vh;
+margin:auto ;
+width:60% ;
+max-height: 50vh;
 margin-top: 60px;
 background: rgba(220, 198, 239, 0.32);
 border-radius: 10px;
-
 `
 const TrophyCon = styled.div`
 position: relative;
-margin: auto;
-width: 70%;
-height: 35vh;
+
+height: 45vh;
 flex-wrap: wrap;
-margin-top: 60px;
+margin-top: 50px;
 display: flex;
 margin-top: 0px;
 @media screen and ( max-width:1068px){
@@ -131,19 +144,18 @@ color: #f5d4fd;
         top: 130px;
     }
 }
-
 `
 const Profilestat = styled.div`
-position: absolute;
-top: -10px;
+position: relative;
+top: -80px;
 color: #f5d4fd;
-left: 330px;
+left:330px ;
 font-size: 30px;
 letter-spacing: .5px;
 & h6{
     &.level{
-        position: absolute;
-        top: 70px;
+        position: relative;
+        top: -190px;
         color: #f5d4fd;
       
         font-size: 10px;
@@ -151,8 +163,8 @@ letter-spacing: .5px;
         letter-spacing: .5px;
     }
     &.levelNum{
-        position: absolute;
-        top: 45px;
+        position: relative;
+        top: -245px;
         color: #f5d4fd;
       
         font-size: 28px;
@@ -161,8 +173,8 @@ letter-spacing: .5px;
     
     }
     &.points{
-        position: absolute;
-        top: 70px;
+        position: relative;
+        top: -365px;
         color: #f5d4fd;
         left: 110px;
         font-size: 10px;
@@ -170,8 +182,8 @@ letter-spacing: .5px;
         letter-spacing: .5px;
     }
     &.pointsNum{
-        position: absolute;
-        top: 45px;
+        position: relative;
+        top: -420px;
         color: #f5d4fd;
         left: 100px;
         font-size: 28px;
@@ -182,8 +194,8 @@ letter-spacing: .5px;
         }
     }
     &.completed{
-        position: absolute;
-        top: 70px;
+        position: relative;
+        top: -540px;
         color: #f5d4fd;
         left: 240px;
         font-size: 10px;
@@ -193,8 +205,8 @@ letter-spacing: .5px;
 }
 `
 const ProfileRank = styled.div`
-position: absolute;
-top: 120px;
+position: relative;
+top: -570px;
 color: #f5d4fd;
 left: 330px;
 font-size: 30px;
@@ -202,8 +214,8 @@ letter-spacing: .5px;
 width: 100%;
 & h6{
     &.course{
-        position: absolute;
-        top: 70px;
+        position: relative;
+        top: 0px;
         color: #f5d4fd;
       
         font-size: 10px;
@@ -211,8 +223,8 @@ width: 100%;
         letter-spacing: .5px;
     }
     &.courseNum{
-        position: absolute;
-        top: 45px;
+        position: relative;
+        top: -105px;
         color: #f5d4fd;
         left: 20px;
         font-size: 28px;
@@ -223,8 +235,8 @@ width: 100%;
         }
     }
     &.section{
-        position: absolute;
-        top: 70px;
+        position: relative;
+        top: -235px;
         color: #f5d4fd;
         left: 110px;
         font-size: 10px;
@@ -232,8 +244,8 @@ width: 100%;
         letter-spacing: .5px;
     }
     &.sectionNum{
-        position: absolute;
-        top: 45px;
+        position: relative;
+        top: -279px;
         color: #f5d4fd;
         left: 130px;
         font-size: 28px;
@@ -245,6 +257,16 @@ width: 100%;
     }
 }
 `
-
+const Icon = styled.div`
+  position  : relative;
+  bottom:77.8px;
+  left: 55px;
+  font-size: 25px;
+  &.rank {
+    position: relative;
+    font-size: 30px;
+    left: 60px;
+  }
+`
 
 export default Dashboard;

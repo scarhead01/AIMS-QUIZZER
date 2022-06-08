@@ -1,4 +1,5 @@
 import React from "react";
+import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -18,7 +19,7 @@ import styled from "styled-components";
                   setOpenModal1(false);
                 }}
               >
-                x
+                 < IoClose style={{fontSize:25}} />
              
             </TitleCloseBtn>
            <ModalBody>
@@ -76,6 +77,7 @@ import styled from "styled-components";
         background-color: transparent;
         border: none;
         color: #eecbff;
+      
     `
     const ModalBody = styled.div`
      margin: auto;

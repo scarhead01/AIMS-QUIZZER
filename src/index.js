@@ -1,18 +1,8 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { BrowserRouter as Router } from 'react-router-dom';
+import  './index.js'
+//import * as serviceWorker from './serviceWorker';
+import ApolloProvider from './ApolloProvider';
 
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Router >
-       <App  />
-    </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
+ReactDOM.render(ApolloProvider,document.getElementById('root')
 );
-
-
-
+//.unregister();

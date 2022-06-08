@@ -1,33 +1,35 @@
-
+import  { useContext } from 'react'
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Main from './components/Main';
-import { Routes, Route } from 'react-router-dom';
+import {   BrowserRouter as Router, Navigate, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
-const Containers=styled.div`
- display: grid; 
- background: #E1C9FF;
-grid-template-columns: 1fr 5fr;
-grid-template-areas:"Sidebar Main";
+import { AuthProvider } from './context/auth';
+import { AuthContext } from './context/auth'
+import Login from './pages/Login';
+import Register from './pages/Register';
+import MainCon from './MainCon';
+import AuthRouteOff from './util/AuthRouteOff';
+import LoginCon from './LoginCon';
 
-gap: 0px;
-
-
-height: 100%;
-
-
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#120835",endColorstr="#030018",GradientType=1);
-`
 
 function App() {
+  const { user } = useContext(AuthContext);
+//  const navigate = useNavigate();
 
-  return (
-    <Containers>
-   <Sidebar/>
-   <Main/>
-  
-  </Containers>
+
+  return(
+   
+    <AuthProvider >
+    <Router>
+  <MainCon />
+   </Router>
+   </AuthProvider>
+ 
   );
-}
+    }
+  
+  
+
 
 export default App;

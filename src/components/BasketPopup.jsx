@@ -1,21 +1,21 @@
 import React from "react";
+import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const IngredientItems = [
-  {id:1,label:'Pepper'},
-  {id:2,label:'Pork'},
-  {id:3,label:'Beef'},
-  {id:3,label:'Tomato',},
-  {id:3,label:'Soy Sauce'},
-  {id:3,label:'Onion'},
-  {id:3,label:'Garlic'},
-  {id:3,label:'Lime'},
-  {id:3,label:'Ginger'},
-  {id:3,label:'Fish Sauce'},
-]
 
-function BasketPopup({ setOpenModal }) {
+function BasketPopup({ setOpenModal, selects, setList}) {
+
+  console.log(selects)
+  const handleRemoveItem = (item) => {
+    setList(item);
+    const id = selects.indexOf(item);
+    const select=selects.splice(id,1);
+     selects = select
+    console.log(id,item)
+   
+   };
+
   
   return (
     <ModalBackgroundCon>
@@ -31,20 +31,17 @@ function BasketPopup({ setOpenModal }) {
               setOpenModal(false);
             }}
           >
-            x
+              < IoClose style={{fontSize:25}} />
          
         </TitleCloseBtn>
        <ModalBody>
-       {IngredientItems.map(menu=>
-               <IngredientList key={menu.id} to='/game/find/findmenu/findgames'>
-                   <h1>{menu.label}</h1>
+       {selects.map(menu=>
+               <IngredientList key={menu.index}  onClick={handleRemoveItem.bind(this, menu)} className={selects.includes(menu)?"selected":""} >
+                   <h1>{menu}</h1>
                    </IngredientList> 
                   
                   )} 
        </ModalBody>
-       
-          
-       
       </ModalContainer>
     </ModalBackgroundCon>
   );
