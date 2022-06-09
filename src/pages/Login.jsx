@@ -86,7 +86,7 @@ const Login = () => {
     };
    console.log(loginData)
     const handleLogin = async (googleData) => {
-      const res = await fetch('http://localhost:5000/api/google-login', {
+      const res = await fetch('https://aimsquizzer.herokuapp.com/api/google-login', {
         method: 'POST',
         body: JSON.stringify({
           token: googleData.tokenId,
