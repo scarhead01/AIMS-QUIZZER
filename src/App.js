@@ -2,7 +2,7 @@ import  { useContext } from 'react'
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Main from './components/Main';
-import {   BrowserRouter as Router, Navigate, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
+import {   HashRouter as Router, Navigate, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { AuthProvider } from './context/auth';
 import { AuthContext } from './context/auth'
