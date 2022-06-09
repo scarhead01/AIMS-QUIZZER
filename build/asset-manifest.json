@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.38094c38.css",
+    "main.js": "/static/js/main.536cf6f9.js",
+    "static/media/poster.png": "/static/media/poster.0419e744a08c5475c649.png",
+    "static/media/loginback.png": "/static/media/loginback.94a56ff3114c371ac88f.png",
+    "static/media/background.png": "/static/media/background.cd2954110cf9714085e3.png",
+    "static/media/quizIcon.png": "/static/media/quizIcon.891d8c09a9889e9a2911.png",
+    "static/media/beverageIcon.png": "/static/media/beverageIcon.564d4d0c6afa563ea5c5.png",
+    "static/media/kazuha.jpg": "/static/media/kazuha.e39411003a3de1171070.jpg",
+    "static/media/HarryP.jpg": "/static/media/HarryP.cd9b21e919e06b497736.jpg",
+    "static/media/foodIcon.png": "/static/media/foodIcon.b5a67441c93dda59ddfd.png",
+    "static/media/bistek.jpg": "/static/media/bistek.ba4882ebcd4ca12c9454.jpg",
+    "static/media/findIngredients2.png": "/static/media/findIngredients2.1746b03dbeaa981204c5.png",
+    "static/media/guessIcon.png": "/static/media/guessIcon.f53402cb674e7050b908.png",
+    "static/media/RonW.jpg": "/static/media/RonW.1f09dfdf3a751f37cd20.jpg",
+    "static/media/basket.png": "/static/media/basket.5ad839de843e558f7205.png",
+    "static/media/logo.png": "/static/media/logo.b8d7b1fa62bc02677d7b.png",
+    "static/media/HermioneG.jpg": "/static/media/HermioneG.4317efc45f27930dbf20.jpg",
+    "static/media/blob.png": "/static/media/blob.f4bccfe6f11f7e3d9776.png",
+    "index.html": "/index.html",
+    "static/media/wave1.svg": "/static/media/wave1.3191369b3f5a531841e7e212e2fe7400.svg",
+    "main.38094c38.css.map": "/static/css/main.38094c38.css.map",
+    "main.536cf6f9.js.map": "/static/js/main.536cf6f9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.38094c38.css",
+    "static/js/main.536cf6f9.js"
+  ]
+}
