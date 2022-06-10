@@ -119,7 +119,7 @@ const FindMenuCon = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 80vh;
+  height: 100vh;
   margin: auto ;
   //justify-content: center ;
   align-items:center ;
