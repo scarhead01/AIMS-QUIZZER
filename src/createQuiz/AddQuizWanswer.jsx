@@ -21,8 +21,8 @@ const gameId ="629c247d6a10ae7b11e3c2e2"
    console.log(data)
    //const {} = useParams();
    const {games} = useParams();
-  
-
+   const cate=data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question);
+console.log(cate)
   return (
     <FindMenuCon>
       <NavCon><Nav to='/game/create'>{games}</Nav><MdOutlineArrowBackIos/> <Nav to={`/game/create/${games}/categories `}>Categories</Nav></NavCon>
@@ -38,9 +38,9 @@ const gameId ="629c247d6a10ae7b11e3c2e2"
 
      <h1>Correct</h1>
 
-    { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question)?.map((cate) =>  (
+   
           <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/find/${cats}/${cate.question}`} >{cate.cAnswer} </Find>
-     )) }
+     
      <h1>Wrong</h1>
     { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question)?.wAnswer?.map((cate) =>  (
           <Find key={cate.id} cate={cate} to={`/game/create/find/${cats}/${cate.question}/q`} >{cate.names} </Find>
