@@ -76,14 +76,14 @@ const Gwchoices = ({ setOpenModal2, game, cat,subCat, setNums }) => {
        
       </TitleCloseBtn>
       <Form>
-      <Heading> <h1>Add Correct Answer</h1> </Heading>
+      <Heading> <h1>Add Wrong Answer</h1> </Heading>
  
  <form onSubmit={handleSubmit(onSubmit)}>
 
     <label> Answer:</label>
 <input
   {...register("chName", { required: true })}
-  placeholder="Ingredients Name"
+  placeholder="Choices Name"
 />
 <label>Image Url</label>
 <input

@@ -51,7 +51,7 @@ const AddGuessQuiz = () => {
 
     { data?.getGuessQuizzes?.guessQuiz?.map((cate) =>  (
       
-          <Find key={cate.gName} cate={cate} cat={cats} to={`/game/create/find/${cats}/${scName}/${setNum}/${cate.gName}/g`}>{cate.gName} </Find>
+          <Find key={cate.gName} cate={cate} cat={cats} to={`/game/create/guess/${cats}/${scName}/${setNum}/${cate.gName}/g`}>{cate.gName} </Find>
      )) }
 
      

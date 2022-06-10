@@ -57,14 +57,14 @@ const AddSubCat = () => {
      
 
     { data?.getGame.subCategories?.map((cate) =>  (
-          <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/find/${cats}/${cate.scName}`} >{cate.scName} </Find>
+          <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/find/${cats}/${cate.scName}/f`} >{cate.scName} </Find>
      )) }
 
 {modalOpen && <SubCatForm setOpenModal={setModalOpen} game={games} cat={cats} />}
   </FindMenuCon>
   )
 }
-
+  
 const FETCH_CATEGORY_QUERY = gql`
 query($cats:String!){
  getGame(gameId: "6227003f9ac1104969591b20", cName: $cats) {

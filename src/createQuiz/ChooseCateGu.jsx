@@ -24,17 +24,26 @@ const ChooseCatGu = () => {
 
 const Find = styled(Link)`
 border-radius: 10px ;
+display: block;
 outline: none;
 //margin: 0px;
+justify-content: center ;
+align-items: center ;
+text-align: center ;
 border-style:  none;
-height: 130px;
+color: #f0e3f0 ;
+padding: 1rem ;
 width: 420px ;
 cursor: pointer;
+text-decoration:none ;
 
 //margin:auto ;
-margin-bottom: 10px;
+margin-bottom: 20px;
 background: linear-gradient(180deg, rgba(156, 132, 194, 0.68) 0%, rgba(201, 100, 249, 0.74) 100%);
-`
+& h1{
+  place-items:center ;
+  font-size: 25px ;
+}`
   
 const FindMenuCon = styled.div`
   display: flex;

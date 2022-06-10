@@ -61,11 +61,11 @@ const CatForm = ({ setOpenModal, game, cat }) => {
        
       </TitleCloseBtn>
       <Form>
-       <Heading> <h1>Add New Sub Category</h1> </Heading>
+       <Heading> <h1>Add New Category</h1> </Heading>
  
        <form onSubmit={handleSubmit(onSubmit)}>
     
-          <label> Sub Category Name:</label>
+          <label> Category Name:</label>
       <input
         {...register("cName", { required: true })}
         placeholder=" category Name"

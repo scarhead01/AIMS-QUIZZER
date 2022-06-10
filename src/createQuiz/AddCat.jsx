@@ -37,7 +37,7 @@ const gameId ="629c247d6a10ae7b11e3c2e2"
      
 
     { data?.getQuiz.quizCategories?.map((cate) =>  (
-          <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/find/${cate.cName}`} >{cate.cName} </Find>
+          <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/quiz/${cate.cName}/q`} >{cate.cName} </Find>
      )) }
 
 {modalOpen && <CatForm setOpenModal={setModalOpen} game={games} cat={cats} />}

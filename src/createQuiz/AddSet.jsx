@@ -33,7 +33,7 @@ const AddSet = () => {
    }
    console.log(data)
 
-  return (
+  return ( 
     
     <FindMenuCon>
     
@@ -54,7 +54,7 @@ const AddSet = () => {
 
     { data?.getSets?.sets.reverse().map((cate) =>  (
       
-          <Find key={cate.id} cate={cate} cat={cats} setNum={cate.setNum} to={`/game/create/find/${cats}/${subCats}/${cate.setNum}`}> {cate.setNum} </Find>
+          <Find key={cate.id} cate={cate} cat={cats} setNum={cate.setNum} to={`/game/create/find/${cats}/${subCats}/${cate.setNum}/f`}> {cate.setNum} </Find>
      )) }
 
      

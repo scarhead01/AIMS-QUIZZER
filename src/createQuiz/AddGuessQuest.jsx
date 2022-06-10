@@ -57,12 +57,12 @@ const AddGuestQuest = () => {
       </AddBtn>
 </AddCon>
      
-<h1> Ingredients:</h1>
+<h1> Correct:</h1>
     { rIngredients?.map((cate) =>  (
       
           <Find key={cate.index} cate={cate} cat={cats} >{cate.chName} </Find>
      )) }
-     <h1> Wrong Ingredients:</h1>
+     <h1> Wrong Answer:</h1>
      { wIngredients?.map((cate) =>  (
       
       <Find key={cate.index} cate={cate} cat={cats} >{cate.chName} </Find>
@@ -101,8 +101,6 @@ query GetGuessQuizzes( $cats: String!, $scName: String!, $setNum: String!) {
 
 const Find = styled.button`
 border-radius: 10px ;
-position: relative ;
-
 outline: none;
 //margin: 0px;npm
 border-style:  none;
@@ -134,6 +132,7 @@ const FindMenuCon = styled.div`
   align-items:center ;
   width: 100%;
  padding-top: 60px;
+ overflow:auto ;
 & h1{
   font-size: 18px;
   color:#f7e0f5 ;

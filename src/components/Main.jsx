@@ -81,43 +81,43 @@ const Main = () => {
           <Routes>
           <Route element ={<AuthRoute />}>
        <Route exact path='/' element={<Dashboard />} />
-       <Route path="/game" element={<Game />} />
-       <Route path="/statistics" element={<Statistics />} />
-       <Route path="/rank" element={<Ranks />} />
-       <Route path="/account" element={<Account />} />
-       <Route path="/setting" element={<Setting />} />
-       <Route path="/game/find" element={<Find />} />
-       <Route path="/game/guess" element={<Guess />} />
-       <Route path="/game/quiz" element={<Quiz />} />
-       <Route path="/game/find/findmenu/:diffs/:cats" element={<FindMenus />} />
-       <Route path="/game/guess/guessmenu/:diffs/:cats" element={<GuessMenus />} />
+       <Route path="/game/" element={<Game />} />
+       <Route path="/statistics/" element={<Statistics />} />
+       <Route path="/rank/" element={<Ranks />} />
+       <Route path="/account/" element={<Account />} />
+       <Route path="/setting/" element={<Setting />} />
+       <Route path="/game/find/" element={<Find />} />
+       <Route path="/game/guess/" element={<Guess />} />
+       <Route path="/game/quiz/" element={<Quiz />} />
+       <Route path="/game/find/findmenu/:diffs/:cats/" element={<FindMenus />} />
+       <Route path="/game/guess/guessmenu/:diffs/:cats/" element={<GuessMenus />} />
        {/* <Route path="/game/find/findmenu/Hard" element={<FindMenus />} /> */}
-       <Route path="/game/guess/guessmenu" element={<GuessMenus />} />
-       <Route path="/game/quiz/quizmenu" element={<QuizMenus />} />
-       <Route path="/game/find/findmenu/Easy/:cats/findgames/:scName/:setNum" element={<FindGames />} />
-       <Route path="/game/find/findmenu/Hard/:cats/findgames" element={<FindGamesHard />} />
-       <Route path="/game/guess/guessmenu/:diffs/:cats/guessgame" element={<GuessGameEasy />} />
-       <Route path="/game/guess/guessmenu/:diffs/:cats/guessgames/:scName/:setNum" element={<GuessGameEasy/>} />
+       <Route path="/game/guess/guessmenu/" element={<GuessMenus />} />
+       <Route path="/game/quiz/quizmenu/" element={<QuizMenus />} />
+       <Route path="/game/find/findmenu/Easy/:cats/findgames/:scName/:setNum/" element={<FindGames />} />
+       <Route path="/game/find/findmenu/Hard/:cats/findgames/" element={<FindGamesHard />} />
+       <Route path="/game/guess/guessmenu/:diffs/:cats/guessgame/" element={<GuessGameEasy />} />
+       <Route path="/game/guess/guessmenu/:diffs/:cats/guessgames/:scName/:setNum/" element={<GuessGameEasy/>} />
        <Route path="/game/guess/easy" element={<GuessGameEasy />} />
-       <Route path="/game/guess/guessmenu/Hard/:cats/guessgame" element={<GuessGameHard />} />
-       <Route path="/game/quiz/quizmenu/quiz" element={<MainQuiz />} />
+       <Route path="/game/guess/guessmenu/Hard/:cats/guessgame/" element={<GuessGameHard />} />
+       <Route path="/game/quiz/quizmenu/quiz/" element={<MainQuiz />} />
  
        <Route path="/game/create" element={<ChooseGame />} />
-       <Route path="/game/create/categories/find" element={<ChooseCat />} />
-       <Route path="/game/create/categories/guess" element={<ChooseCatGu />} />
-       <Route path="/game/create/:games/categories" element={<AddCat />} />
-       <Route path="/game/create/:games/:cats" element={<AddQuizQuest />} />
-       <Route path="/game/create/:games/:cats/:question" element={<AddwAnswer />} />
-       <Route path="/game/create/:games/:cats/" element={<AddSubCat />} />
+       <Route path="/game/create/categories/find/" element={<ChooseCat />} />
+       <Route path="/game/create/categories/guess/" element={<ChooseCatGu />} />
+       <Route path="/game/create/:games/categories/q" element={<AddCat />} />
+       <Route path="/game/create/:games/:cats/q" element={<AddQuizQuest />} />
+       <Route path="/game/create/:games/:cats/:question/q" element={<AddwAnswer />} />
+       <Route path="/game/create/:games/:cats/f" element={<AddSubCat />} />
        <Route path="/game/create/:games/:cats/g" element={<AddSubCatGu />} />
-       <Route path="/game/create/:games/:cats/:subCats" element={<AddSet />} />
+       <Route path="/game/create/:games/:cats/:subCats/f" element={<AddSet />} />
        <Route path="/game/create/:games/:cats/:subCats/g" element={<AddSetGu />} />
-       <Route path="/game/create/:games/:cats/:scName/:setNum" element={<AddRecipe />} />
+       <Route path="/game/create/:games/:cats/:scName/:setNum/f" element={<AddRecipe />} />
        <Route path="/game/create/:games/:cats/:scName/:setNum/g" element={<AddGuessQuiz />} />
-       <Route path="/game/create/:games/:cats/:scName/:setNum/:rName" element={<AddrIngredients />} />
+       <Route path="/game/create/:games/:cats/:scName/:setNum/:rName/f" element={<AddrIngredients />} />
        <Route path="/game/create/:games/:cats/:scName/:setNum/:gName/g" element={<AddGuestQuest />} />
 
-       </Route>
+       </Route> 
  
    </Routes>
    {/* </AuthCheck> */}

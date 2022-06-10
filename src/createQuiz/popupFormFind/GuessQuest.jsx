@@ -71,14 +71,14 @@ const GuessQuest
        
       </TitleCloseBtn>
       <Form>
-      <Heading> <h1>Add New Recipe</h1> </Heading>
+      <Heading> <h1>Add New Quest</h1> </Heading>
  
  <form onSubmit={handleSubmit(onSubmit)}>
 
-    <label> Questio:</label>
+    <label> Question:</label>
 <input
   {...register("gName", { required: true })}
-  placeholder="Recipe Name"
+  placeholder="Item name"
 />
 <label>Image Url</label>
 <input

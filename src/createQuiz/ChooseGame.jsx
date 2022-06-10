@@ -45,7 +45,7 @@ const ChooseGame = () => {
         <h1>Guess the Pict
             ure</h1>
     </QuizMenu>
-    <QuizMenu to="/game/create/quiz/categories"  // className="openModalBtn"
+    <QuizMenu to="/game/create/quiz/categories/q"  // className="openModalBtn"
        // onClick={Quiz} 
        onMouseOver={ImgHover.bind(this,"Quiz")} onMouseLeave={ImgnoHover.bind(this,"Quiz")} >
          <CatIcon src={QuizIcon} className={hover === "Quiz" ? "active":""}  />

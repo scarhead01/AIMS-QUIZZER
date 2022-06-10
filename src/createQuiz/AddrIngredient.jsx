@@ -60,6 +60,8 @@ const AddrIngredients = () => {
       
           <Find key={cate.index} cate={cate} cat={cats} >{cate.iName} </Find>
      )) }
+
+
      <h1> Wrong Ingredients:</h1>
      { wIngredients?.map((cate) =>  (
       
@@ -110,8 +112,7 @@ query ( $cats: String!, $scName: String!, $setNum: String!) {
 
 const Find = styled.button`
 border-radius: 10px ;
-position: relative ;
-
+//position: relative ;
 outline: none;
 //margin: 0px;
 border-style:  none;
@@ -141,6 +142,7 @@ const FindMenuCon = styled.div`
   margin: auto ;
   //justify-content: center ;
   align-items:center ;
+  overflow: auto;
   width: 100%;
  padding-top: 60px;
 & h1{

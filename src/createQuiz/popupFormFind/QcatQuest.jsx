@@ -65,11 +65,11 @@ const cName= cat;
        
       </TitleCloseBtn>
       <Form>
-       <Heading> <h1>Add New Sub Category</h1> </Heading>
+       <Heading> <h1>Add New Question</h1> </Heading>
  
        <form onSubmit={handleSubmit(onSubmit)}>
     
-          <label> Sub Category Name:</label>
+          <label> Question:</label>
       <input
         {...register("question", { required: true })}
         placeholder="question"

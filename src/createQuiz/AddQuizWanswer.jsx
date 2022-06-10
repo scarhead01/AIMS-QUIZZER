@@ -36,14 +36,14 @@ const gameId ="629c247d6a10ae7b11e3c2e2"
           <MdAdd/></Icon>
       </AddBtn>
 
-     
+     <h1>Correct</h1>
 
     { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.map((cate) =>  (
           <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/find/${cats}/${cate.question}`} >{cate.cAnswer} </Find>
      )) }
-     
+     <h1>Wrong</h1>
     { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question)?.wAnswer?.map((cate) =>  (
-          <Find key={cate.id} cate={cate} to={`/game/create/find/${cats}/${cate.question}`} >{cate.names} </Find>
+          <Find key={cate.id} cate={cate} to={`/game/create/find/${cats}/${cate.question}/q`} >{cate.names} </Find>
      )) }
 
 {modalOpen && <WrongAnsForm setOpenModal={setModalOpen} game={games} cat={cats} question={question} />}
@@ -70,7 +70,7 @@ query GetQuiz($gameId: ID!) {
 }
 `
 
-const Find = styled(Link)`
+const Find = styled.button`
 border-radius: 10px ;
 position: relative ;
 outline: none;

@@ -5,7 +5,7 @@ import styledComponents from 'styled-components';
 import {useQuery} from '@apollo/react-hooks';
 import gql from "graphql-tag";
 
-const ChooseCat = () => {
+const ChooseCats = () => {
 
     const {cats} = useParams();
    
@@ -14,8 +14,8 @@ const ChooseCat = () => {
 
   return (
     <FindMenuCon>
-   <Find to='/game/create/find/Food'> <h1>FOOD</h1>  </Find>
-   <Find to='/game/create/find/Beverages'> <h1>BEVERAGES</h1> </Find>
+   <Find to='/game/create/find/Food/q'> <h1>FOOD</h1>  </Find>
+   <Find to='/game/create/find/Beverages/q'> <h1>BEVERAGES</h1> </Find>
   </FindMenuCon>
   )
 }
@@ -63,4 +63,4 @@ const FindMenuCon = styled.div`
 
 
 
-export default ChooseCat
+export default ChooseCats

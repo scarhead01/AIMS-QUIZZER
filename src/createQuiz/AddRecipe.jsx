@@ -50,7 +50,7 @@ const AddRecipe = () => {
 
     { data?.getRecipes?.recipes.map((cate) =>  (
       
-          <Find key={cate.index} cate={cate} cat={cats} to={`/game/create/find/${cats}/${scName}/${setNum}/${cate.rName}`}>{cate.rName} </Find>
+          <Find key={cate.index} cate={cate} cat={cats} to={`/game/create/find/${cats}/${scName}/${setNum}/${cate.rName}/f`}>{cate.rName} </Find>
      )) }
 
      

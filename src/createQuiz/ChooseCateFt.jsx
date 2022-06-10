@@ -14,8 +14,8 @@ const ChooseCat = () => {
 
   return (
     <FindMenuCon>
-   <Find to='/game/create/find/Food'> <h1>FOOD</h1>  </Find>
-   <Find to='/game/create/find/Beverages'> <h1>BEVERAGES</h1> </Find>
+   <Find to='/game/create/find/Food/f'> <h1>FOOD</h1>  </Find>
+   <Find to='/game/create/find/Beverages/f'> <h1>BEVERAGES</h1> </Find>
   </FindMenuCon>
   )
 }

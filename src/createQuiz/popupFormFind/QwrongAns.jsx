@@ -65,14 +65,14 @@ const cName= cat;
        
       </TitleCloseBtn>
       <Form>
-       <Heading> <h1>Add New Sub Category</h1> </Heading>
+       <Heading> <h1>Add Wrong Answer</h1> </Heading>
  
        <form onSubmit={handleSubmit(onSubmit)}>
     
-          <label> Sub Category Name:</label>
+          <label> Wrong Answer:</label>
       <input
         {...register("names", { required: true })}
-        placeholder="name"
+        placeholder="wrong"
       />
      
     
@@ -269,6 +269,7 @@ align-items: center ;
 `
 
 const Submit = styled.button`
+position: relative;
 margin: auto ;
 padding:10px 25px ;
 border-radius: 5px ;

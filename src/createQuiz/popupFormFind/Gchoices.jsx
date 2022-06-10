@@ -166,7 +166,7 @@ const Container = styled.div`
    
    // bottom: 0px;
     width: 500px;
-    height: 550px;
+    height: 250px;
     border-radius: 10px;
     background: #d0beff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
