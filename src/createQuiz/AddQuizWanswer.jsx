@@ -38,7 +38,7 @@ const gameId ="629c247d6a10ae7b11e3c2e2"
 
      <h1>Correct</h1>
 
-    { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question)?.cAnswer?.map((cate) =>  (
+    { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question)?.map((cate) =>  (
           <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/find/${cats}/${cate.question}`} >{cate.cAnswer} </Find>
      )) }
      <h1>Wrong</h1>
