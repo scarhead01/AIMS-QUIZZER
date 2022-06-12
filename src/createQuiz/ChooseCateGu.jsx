@@ -16,7 +16,7 @@ const ChooseCatGu = () => {
     <FindMenuCon>
    <Find to='/game/create/guess/Food/g'> Food </Find>
    <Find to='/game/create/guess/Equipment/g'> Equipment </Find>
-   <Find to='/game/create/guess/Utensils/g'> Beverages </Find>
+   <Find to='/game/create/guess/Utensils/g'> Utensils </Find>
   </FindMenuCon>
   )
 }

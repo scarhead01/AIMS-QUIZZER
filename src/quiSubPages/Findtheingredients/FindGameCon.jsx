@@ -533,17 +533,21 @@ box-shadow: 0 0 2px 2px rgba(0,0,0,0.3) ;
 `
 const BasketPic = styled.img`
 align-items: left;
-height: 200px;
-width: 200px;
+height: 13em;
+width: 13em;
 position: relative;
-bottom: -40px;
+bottom: -2em;
 margin: auto;
+@media screen and (max-width: 560px) {
+  height: 10em;
+width: 10em;
+}
 `
 const HintPic = styled.img`
 position: relative;
 margin: auto;
-height: 50px;
-width: 50px;
+height: 35px;
+width: 35px;
 `
 const IngredientsCon = styled.div`
     margin: auto;
@@ -612,8 +616,8 @@ background: #E1C9FF;
 position: relative;
 border-radius: 90px;
 height: 100%;
-right: 40px;
-bottom: -80px;
+right: 1em;
+bottom: -2em;
 padding: 10px 40px;
 border: none;
 box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
@@ -640,8 +644,8 @@ const HintCon = styled.div`
   position: relative;
   flex-direction: column;
   width: 100px;
-  height: -150px;
-  bottom: -90px;
+ // height: -150px;
+  bottom: -2em;
   margin: auto;
   & h3 {
        padding: 5px 8px;

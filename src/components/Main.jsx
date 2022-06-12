@@ -46,9 +46,17 @@ grid-area: Main;
 margin: 0px ;
 height: 100%;
 width:80vw;
+padding-top: 3em ;
 
 background: linear-gradient(180deg, #5A00CC 0%, #2B0062 100%);
-
+@media screen and (max-width: 560px) {
+  /* For mobile phones: */
+  grid-area: Sidebar;
+ //visibility:hidden;
+ width: 100vw;
+ margin:0px ;
+ padding-top: 3em ;
+}
 `
 
 const MainCon1 = styled.div`
@@ -100,7 +108,7 @@ const Main = () => {
        <Route path="/game/guess/guessmenu/:diffs/:cats/guessgames/:scName/:setNum/" element={<GuessGameEasy/>} />
        <Route path="/game/guess/easy" element={<GuessGameEasy />} />
        <Route path="/game/guess/guessmenu/Hard/:cats/guessgame/" element={<GuessGameHard />} />
-       <Route path="/game/quiz/quizmenu/quiz/" element={<MainQuiz />} />
+       <Route path="/game/quiz/quizmenu/:cats/q" element={<MainQuiz />} />
  
        <Route path="/game/create" element={<ChooseGame />} />
        <Route path="/game/create/categories/find/" element={<ChooseCat />} />

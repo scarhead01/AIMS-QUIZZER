@@ -6,5 +6,13 @@ html,body{
     left: 0px;
     margin: 0px;
 }
+@media screen and (prefers-reduced-motion: reduce) {  
+    * {
+      /* Very short durations means JavaScript that relies on events still works */
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
 @import url('https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100;1,400&family=Montserrat:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100;1,400&family=Montserrat:wght@100&family=Patrick+Hand&display=swap');

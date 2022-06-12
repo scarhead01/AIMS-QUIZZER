@@ -70,7 +70,11 @@ useEffect(() => {
           <SubImg src={imgUrl} onMouseOver={ImgHover} onMouseLeave={ImgnoHover} onDoubleClick={() => {
           setModalOpen(true);}}/>
          <Cc className={hover ? "active":""}  href={imgUrlCc} > cc: {imgCc}  </Cc>
+
+         <Headers>
+
           <h1> {scName}</h1>
+         </Headers>
           <FabCon>
          <Fabs>
        
@@ -115,6 +119,13 @@ useEffect(() => {
    ;
 };
 
+
+const Headers = styled.div`
+display:flex ;
+//	flex-direction: column-reverse;
+width:40% ;
+margin-left:1rem ;
+`
 const Set = styled.div`
 display:flex ;
 	flex-direction: column-reverse;
@@ -264,7 +275,7 @@ outline: none;
 //margin: 0px;
 border-style:  none;
 height: 130px;
-width: 420px ;
+width: 70% ;
 cursor: pointer;
 
 //margin:auto ;
