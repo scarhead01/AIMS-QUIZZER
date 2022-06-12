@@ -90,35 +90,15 @@ const guesss = guess?.getGuessQuizzes?.guessQuiz;
    
  }, [])
  
-  
- 
- console.log(diffs)
-
-  
-
 
  const gChoices = guesse?.gChoices;
  const wChoices = guesse?.wChoices;
  const choices = gChoices?.concat(wChoices);
 
 
- const Selected = (diff,imgurl,imgcc,imgccurl) => {
-    setSelected([... selected,diff]);
-    if(show === false){
-    setimgUrl(imgurl)
-    setimgCc(imgcc)
-    setimgUrlCc(imgccurl)
-   // console.log(diff)
-    }
-  }
  
  
-  //console.log(selected)
-
   console.log("score: "+ score)
- //console.log("empty: "+ empty)
-  
-  //console.log(gChoices)
   const ingredients=useMemo(()=>choices?.sort(()=> Math.random() - 0.6),[taken])
  
   // -------CHECK/NEXT FUNCTION--------
@@ -155,7 +135,7 @@ const guesss = guess?.getGuessQuizzes?.guessQuiz;
   useEffect(() => {
    if(nextQuest===true){
 
-    selected.splice(0,selected.length)
+   // selected.splice(0,selected.length)
      Next(currQuestion,taken);
    }
   }, [nextQuest])
@@ -227,107 +207,22 @@ const guesss = guess?.getGuessQuizzes?.guessQuiz;
     }
 
 
-   const CorrectAnswer =(arrayName)=>{
-
-    let correct=0;
-    let wrong=0;
-    if(arrayName?.length===selected?.length){
-    
-
-    for(let i = 0; i < selected?.length; i++){
-      if(!arrayName?.includes(selected[i])){
-        //  setcorrect("incorrect")
-        //  const corrects ="incorrect"
-        //  Correct(corrects);
-          wrong=wrong+1;
-      }else{
-       
-        // if(repeat?.includes(currQuestion)){
-        //   for(let i = 0; i < repeat?.length; i++){
-        //    if(repeat?.includes(currQuestion)){
-           
-        //        repeat?.splice(i, 1); 
-             
-        //    }
-        //   }
-        //   }
-          // const corrects ="correct"
-          // Correct(corrects);
-          correct=correct+1;
-      }
-   
-      if(wrong>0){
-          setcorrect("incorrect")
-         const corrects ="incorrect"
-         Correct(corrects);
-      }else if(correct===arrayName?.length&& wrong===0){
-            if(repeat?.includes(currQuestion)){
-          for(let i = 0; i < repeat?.length; i++){
-           if(repeat?.includes(currQuestion)){
-           
-               repeat?.splice(i, 1); 
-             
-           }
-          }
-          }
-          const corrects ="correct"
-          Correct(corrects);
-      }
-
-    }
-   } else{
-    setcorrect("incorrect")
-    const corrects ="incorrect"
-    Correct(corrects);
-   }
-  
-   
-    
-    
-}
-
-
-
-  // useEffect(() => {
-
-
-  //     return () => ingredients?.destroy()
-    
-  // }, [running])
-  
-
-  const [items, setList] = useState("");
-   const list = selected;
-//   const UpdateListItem = (item) =>{
-//     list.splice(item)
-//  }
-//  useEffect(() => {
-
-//    // console.log(items)
-//     const id = list.indexOf(items)
-//     list.splice(id,1)
-  
-//  }, []);
-
+    const CorrectAnswer =(arrayName)=>{
+      if(selected){
+        if(arrayName===selected){
+        setcorrect(true)
+          Correct("correct")
+        }else{
+            setcorrect(false)
+            Correct("incorrect")
+        }
+     }  
+  }
 
   const onSubmits = () =>{
-
-
-    const arrayName = new Array();
-  
-      for(let i = 0; i < gChoices?.length; i++){
-        arrayName?.push(gChoices[i]?.iName)
-      }
-      
-      CorrectAnswer(arrayName);
-
-       //console.log("correct?: "+ correct)
-      // console.log("current question: "+ currQuestion)
-      // console.log("number of recipe: "+ guesss?.length)
-      // console.log("wrong answered: "+ repeat)
-       console.log("number taken: "+ taken)
-     
-  
+    const arrayName=guesse?.gChoices;
+    CorrectAnswer(arrayName);
+     console.log("number taken: "+ taken)
 }
   
 const Continue = () => {
@@ -455,7 +350,7 @@ const Return = () => {
           </HintCon>
                   <Submit onClick={()=>{selected?.length>0 ? onSubmits(): setempty(false)}}>Submit</Submit>
                   </Footer>
-                  {modalOpen && <BasketPopup setOpenModal={setModalOpen} setList={setList} selects={list} />}
+                  {/* {modalOpen && <BasketPopup setOpenModal={setModalOpen} setList={setList} selects={list} />} */}
                   {modalOpen1 && <HintPopup setOpenModal1={setModalOpen1} />}
                   {modalOpen2 && <ImageModal setOpenModal={setModalOpen2} img={{imgUrl,imgCc,imgUrlCc}}  />}
                   {popCheck && <PopChecker setpopChecks={setpopCheck} correct={answer} answer={arrayName} setnextQuests={setnextQuest}/>}

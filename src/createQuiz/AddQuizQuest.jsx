@@ -38,7 +38,7 @@ const gameId ="629c247d6a10ae7b11e3c2e2"
      
 
     { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.map((cate) =>  (
-          <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/find/${cats}/${cate.question}/q`} >{cate.question} </Find>
+          <Find key={cate.question} cate={cate} cat={cats} to={`/game/create/quiz/${cats}/${cate.question}/q`} >{cate.question} </Find>
      )) }
 
 {modalOpen && <Question setOpenModal={setModalOpen} game={games} cat={cats} />}

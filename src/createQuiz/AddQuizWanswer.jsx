@@ -21,7 +21,8 @@ const gameId ="629c247d6a10ae7b11e3c2e2"
    console.log(data)
    //const {} = useParams();
    const {games} = useParams();
-   const cate=data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question);
+   const cate=data?.getQuiz?.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question);
+   const cates=data?.getQuiz?.quizCategories?.find(o => o.cName === cats)?.quizQuestions;
 console.log(cate)
   return (
     <FindMenuCon>
@@ -39,11 +40,11 @@ console.log(cate)
      <h1>Correct</h1>
 
    
-          <Find key={cate.id} cate={cate} cat={cats} to={`/game/create/find/${cats}/${cate.question}`} >{cate.cAnswer} </Find>
+          <Find key={cate} cate={cate} cat={cats} >{cate.cAnswer} </Find>
      
      <h1>Wrong</h1>
     { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question)?.wAnswer?.map((cate) =>  (
-          <Find key={cate.id} cate={cate} to={`/game/create/find/${cats}/${cate.question}/q`} >{cate.names} </Find>
+          <Find key={cate.id} cate={cate} >{cate.names} </Find>
      )) }
 
 {modalOpen && <WrongAnsForm setOpenModal={setModalOpen} game={games} cat={cats} question={question} />}

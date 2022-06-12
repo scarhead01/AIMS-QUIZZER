@@ -85,7 +85,7 @@ const guesss = guess?.getQuiz?.quizCategories.find(o=>o.cName===cats)?.quizQuest
     
     if(loading){
     settaken(1)
-  } }, 700);
+  } }, 800);
 
    
  }, [])
@@ -112,19 +112,13 @@ console.log(choices)
   }
  
  
-  //console.log(selected)
 
   console.log("score: "+ score)
- //console.log("empty: "+ empty)
-  
-  //console.log(gChoices)
   const ingredients=useMemo(()=>choices?.sort(()=> Math.random() - 0.6),[taken])
  
   // -------CHECK/NEXT FUNCTION--------
 
   let ans='';
-
- 
 
   const Next =()=>{
 
@@ -153,12 +147,9 @@ console.log(choices)
    }
   useEffect(() => {
    if(nextQuest===true){
-
-    selected.splice(0,selected.length)
      Next(currQuestion,taken);
    }
   }, [nextQuest])
- // console.log( "Next Quest?"+nextQuest)
   
  useEffect(() => {
  if(completed===true) {
@@ -197,7 +188,6 @@ console.log(choices)
     if(corrects==="incorrect"){
      ans='incorrect'
      setRepeat([... repeat,currQuestion]);
-
      SetScore(ans,currScore);
      PopCheck()
    
@@ -212,121 +202,31 @@ console.log(choices)
     if(repeat?.includes(currQuestion)){
      
         repeat?.splice(i, 1); 
-      
     }
    }
    }
-  
     PopCheck(ans)
    }
-   
    console.log("ans"+ corrects)
-  
 
     }
 
 
    const CorrectAnswer =(arrayName)=>{
-
-    let correct=0;
-    let wrong=0;
-    if(arrayName?.length===selected?.length){
-    
-
-    for(let i = 0; i < selected?.length; i++){
-      if(!arrayName?.includes(selected[i])){
-        //  setcorrect("incorrect")
-        //  const corrects ="incorrect"
-        //  Correct(corrects);
-          wrong=wrong+1;
+    if(selected){
+      if(arrayName===selected){
+      setcorrect(true)
+        Correct("correct")
       }else{
-       
-        // if(repeat?.includes(currQuestion)){
-        //   for(let i = 0; i < repeat?.length; i++){
-        //    if(repeat?.includes(currQuestion)){
-           
-        //        repeat?.splice(i, 1); 
-             
-        //    }
-        //   }
-        //   }
-          // const corrects ="correct"
-          // Correct(corrects);
-          correct=correct+1;
+          setcorrect(false)
+          Correct("incorrect")
       }
-   
-      if(wrong>0){
-          setcorrect("incorrect")
-         const corrects ="incorrect"
-         Correct(corrects);
-      }else if(correct===arrayName?.length&& wrong===0){
-            if(repeat?.includes(currQuestion)){
-          for(let i = 0; i < repeat?.length; i++){
-           if(repeat?.includes(currQuestion)){
-           
-               repeat?.splice(i, 1); 
-             
-           }
-          }
-          }
-          const corrects ="correct"
-          Correct(corrects);
-      }
-
-    }
-   } else{
-    setcorrect("incorrect")
-    const corrects ="incorrect"
-    Correct(corrects);
-   }
-  
-   
-    
-    
+   }  
 }
-
-
-
-  // useEffect(() => {
-
-
-  //     return () => ingredients?.destroy()
-    
-  // }, [running])
-  
-
-  const [items, setList] = useState("");
-   const list = selected;
-//   const UpdateListItem = (item) =>{
-//     list.splice(item)
-//  }
-//  useEffect(() => {
-
-//    // console.log(items)
-//     const id = list.indexOf(items)
-//     list.splice(id,1)
-  
-//  }, []);
-
-
   const onSubmits = () =>{
-
-
-    const arrayName = new Array();
-  
-      for(let i = 0; i < gChoices?.length; i++){
-        arrayName?.push(gChoices[i]?.iName)
-      }
-      
+      const arrayName=guesse?.cAnswer;
       CorrectAnswer(arrayName);
-
-       //console.log("correct?: "+ correct)
-      // console.log("current question: "+ currQuestion)
-      // console.log("number of recipe: "+ guesss?.length)
-      // console.log("wrong answered: "+ repeat)
        console.log("number taken: "+ taken)
-     
-  
 }
   
 const Continue = () => {
@@ -422,7 +322,7 @@ const Return = () => {
           </HintCon>
                   <Submit onClick={()=>{selected?.length>0 ? onSubmits(): setempty(false)}}>Submit</Submit>
                   </Footer>
-                  {modalOpen && <BasketPopup setOpenModal={setModalOpen} setList={setList} selects={list} />}
+                  {/* {modalOpen && <BasketPopup setOpenModal={setModalOpen} setList={setList} selects={list} />} */}
                   {modalOpen1 && <HintPopup setOpenModal1={setModalOpen1} />}
                   {modalOpen2 && <ImageModal setOpenModal={setModalOpen2} img={{imgUrl,imgCc,imgUrlCc}}  />}
                   {popCheck && <PopChecker setpopChecks={setpopCheck} correct={answer} answer={arrayName} setnextQuests={setnextQuest}/>}
@@ -433,7 +333,7 @@ const Return = () => {
 
 const ADD_SET_SCORE = gql `
 mutation ( $cats: String!, $scName: String!, $setNum: String!, $userId: String!, $finalScore: String!, $newdate: String!) {
-  insertSetScore(gameId:"6227003f9ac1104969591b20",  cName: $cats, scName: $scName, setNum: $setNum, userId: $userId, score: $finalScore, dateTaken: $newdate) {
+  insertSetScore(gameId:"629c247d6a10ae7b11e3c2e2",  cName: $cats, scName: $scName, setNum: $setNum, userId: $userId, score: $finalScore, dateTaken: $newdate) {
     id
   }
 }
