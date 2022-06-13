@@ -15,114 +15,40 @@ const Dashboard = () => {
 
     return <DashboardCon>
         <StatCon>
-          {/* <Profilepic src={loginData? loginData.picture:kazuha}/>
-  
-          <ProfileName>{loginData? loginData.name: "Kazuha"}
-              <h5>{loginData? loginData.email: "@kkazuha"}</h5>
+          
+
+        <Con className='card'>
+        <Profilepic className='img' src={loginData? loginData.picture:kazuha}/>
+        <div class="infos">
+      <div class="name">
+        <h2> {loginData? loginData.name: "Kazuha"}</h2>
+        <h4>{loginData? loginData.email: "@kkazuha"}</h4>
+      </div>
+      <p class="text">
               <h5 className='course'>Hospitality Management</h5>
               <h5 className='section'>BSHM-32A1</h5>
-          </ProfileName>
-          <Profilestat>
-              <h6>Stats</h6><Icon><IoStatsChartSharp /></Icon>
-              <h6 className='level'>Level</h6>
-              <h6 className='levelNum'>10</h6>
-              <h6 className='points'>Points</h6>
-              <h6 className='pointsNum'>210<span>pts</span></h6>
-              <h6 className='completed'>Completed</h6>
-          </Profilestat>
-          <ProfileRank>
-              <h6>Ranks</h6>
-              <h6 className='course'>Course Rank</h6><Icon className = "rank"><BiMedal /></Icon>
-              <h6 className='courseNum'>1<span>st</span></h6>
-              <h6 className='section'>Section Rank</h6>
-              <h6 className='sectionNum'>1<span>st</span></h6>
-          </ProfileRank> */}
+      </p>
+      <ul class="stats">
+        <li>
+          <h3>15K</h3>
+          <h4>Points</h4>
+        </li>
+        <li>
+          <h3>82</h3>
+          <h4>Section Rank</h4>
+        </li>
+        <li>
+          <h3>1</h3>
+          <h4>Course Rank</h4>
+        </li>
+      </ul>
+      <div class="links">
+       
+      </div>
+    </div>
 
-        <Con>
-                <div class="div1"> 
-                <Profilepic src={loginData? loginData.picture:kazuha}/>
-                </div>
-                <div class="div2"> 
-               {loginData? loginData.name: "Kazuha"}
-              <h5>{loginData? loginData.email: "@kkazuha"}</h5>
-              <h5 className='course'>Hospitality Management</h5>
-              <h5 className='section'>BSHM-32A1</h5>
-              
-                </div>
-                <div class="div3"> 
-                <div class="p1"> 
-                
-                <h6>Stats</h6>
-                </div>
-                <div class="p2"> 
-                <h6 className='level'>Level</h6>
-                
-                </div>
-                <div class="p3"> 
-                 <h6 className='levelNum'>10</h6>
-                
-                </div>
+</Con>
 
-                </div>
-                <div class="div4"> 
-
-                <div class="p1"> 
-                
-              <h6 className='course'> Rank</h6>
-                </div>
-                <div class="p2"> 
-                <h6>Course Rank</h6>
-                
-                </div>
-                <div class="p3"> 
-                
-              <h6 className='courseNum'>1<span>st</span></h6>
-                </div>
-
-                </div>
-                <div class="div5"> 
-                <div class="p1"> 
-                <Icon><IoStatsChartSharp /></Icon>
-                </div>
-                <div class="p2"> 
-                
-                <h6 className='points'>Points</h6>
-                </div>
-                <div class="p3"> 
-                
-              <h6 className='pointsNum'>210<span>pts</span></h6>
-                </div>
-
-             
-                </div>
-                <div class="div6"> 
-                <div class="p1"> 
-                <Icon className = "rank"><BiMedal /></Icon>
-                </div>
-                <div class="p2"> 
-                
-                <h6 className='section'>Section Rank</h6>
-                </div>
-                <div class="p3"> 
-              <h6 className='sectionNum'>1<span>st</span></h6>
-                
-                </div>
-
-                </div>
-                
-                <div class="div7">
-                <div class="p1"> 
-                    <h6 className='completed'>Completed</h6> </div>
-                
-                </div>
-                <div class="p2"> 
-                
-                </div>
-                <div class="p3"> 
-                
-                </div>
-                <div class="div8"> </div>
-                </Con>
 
         </StatCon>
        <Statistics/>
@@ -141,113 +67,130 @@ max-height:100vh;
 overflow-y: auto;
 `
 const Con = styled.div`
-display: grid;
-flex-wrap:wrap ;
-height:20em;
-grid-template-columns: 2fr repeat(3, 1fr);
-grid-template-rows: repeat(4, 1fr);
-grid-column-gap: 1em;
-grid-row-gap: 0px;
-font-weight: 500;
-text-align:center ;
-font-size: 15px;
-padding:1em ;
-color: #ccc1cf;
- & .p1 { 
-    grid-area: 1 / 1 / 2 / 2; 
-    position: relative;
-    font-size: 20px;
+color: #d2c3c3;
+& .img {
+  max-width: 100%;
+  display: block;
 }
-  & .p2 { 
-      grid-area: 2 / 1 / 3 / 2;
-      position: relative;
-      top: -1.5em;
-     
-    }
-   & .p3 { 
-       grid-area: 3 / 1 / 4 / 2;
-       position: relative;
-       top: -2.8em;
-       font-size: 28px;
-    }
-& .div1 {
-     grid-area: 1 / 1 / 3 / 2;
-    // height:1em ;
-    }
-& .div2 { grid-area: 3 / 1 / 5 / 2; }
-& .div3 { 
-    grid-area: 1 / 2 / 3 / 3;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .3fr .5fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-   
+& ul {
+  list-style: none;
 }
-& .div4 {
-     grid-area: 3 / 2 / 5 / 3;
-     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .3fr .5fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    }
-& .div5 {
-     grid-area: 1 / 3 / 3 / 4;
-     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .3fr .5fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    & .p2 { 
-      grid-area: 2 / 1 / 3 / 2;
-      position: relative;
-      top: 1.55em;
-     
-    }
-    & .p3 { 
-       grid-area: 3 / 1 / 4 / 2;
-       position: relative;
-       top: -1.15em;
-    }
+
+/* Utilities */
+&.card::after,
+&.card img {
+  border-radius: 50%;
 }
-& .div6 { 
-    grid-area: 3 / 3 / 5 / 4;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .3fr .5fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    & .p2 { 
-      grid-area: 2 / 1 / 3 / 2;
-      position: relative;
-      top: 1.55em;
-     
-    }
-    & .p3 { 
-       grid-area: 3 / 1 / 4 / 2;
-       position: relative;
-       top: -1.15em;
-    }
+
+&.card,
+& .stats {
+  display: flex;
 }
-& .div7 { grid-area: 1 / 4 / 3 / 5;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .3fr .5fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+
+&.card {
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  //background-color: rgba(255, 255, 255, .5);
+ // max-width: 500px;
+  //box-shadow: 0 0 30px rgba(0, 0, 0, .15);
+  margin: 1rem;
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden;
 }
-& .div8 { grid-area: 3 / 4 / 5 / 5; }
+
+
+
+& .infos {
+  margin-left: 1.5rem;
+}
+
+& .name {
+  margin-bottom: 1rem;
+}
+& .name h2 {
+  font-size: 1.3rem;
+}
+& .name h4 {
+  font-size: .8rem;
+  color: #333
+}
+
+& .text {
+  font-size: .9rem;
+  margin-bottom: 1rem;
+}
+
+& .stats {
+  text-align:center ;
+  margin-bottom: 1rem;
+}
+& .stats li {
+  min-width: 5rem;
+}
+& .stats li h3 {
+  font-size: .99rem;
+}
+& .stats li h4 {
+  font-size: .75rem;
+}
+
+& .links button {
+  font-family: 'Poppins', sans-serif;
+  min-width: 120px;
+  padding: .5rem;
+  border: 1px solid #222;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .25s linear;
+}
+& .links .follow,
+.links .view:hover {
+  background-color: #222;
+  color: #FFF;
+}
+& .links .view,
+.links .follow:hover{
+  background-color: transparent;
+  color: #222;
+}
+
+@media screen and (max-width: 450px) {
+ &.card {
+    display: block;
+  }
+  & .infos {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+  & .links button {
+    min-width: 100px;
+  }
+}
+
 `
 
 const StatCon = styled.div`
 position: relative;
 margin:auto ;
-width:60% ;
+width:50% ;
 max-height: 100%;
-padding: 1em;
+
 background: rgba(220, 198, 239, 0.32);
 border-radius: 10px;
+@media screen and ( max-width:468px){
+   width: 350px;
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+   width:450px;
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:600px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 700px;
+}
 `
 const TrophyCon = styled.div`
 position: relative;
@@ -302,149 +245,6 @@ const Icon = styled.div`
   font-size: 25px;
   
 `
-// const ProfileName = styled.div`
-// margin-left: 40px ;
-// font-size: 20px;
-// position: absolute;
-// left: 170px;
-// top: 70px;
-// font-weight: 600;
-// color: #f5d4fd;
-// & h5{
-//     margin-top: 5px;
-//     font-weight: 500;
-//     font-size: 12px;
-//     color: #ccc1cf;
-//     &.course{
-//         font-size: 16px;
-//         font-weight: 400;
-//         position: absolute;
-//         color: #f5d4fd;
-//         left: -140px;
-//         top: 100px;
-//     }
-//     &.section{
-//         font-size: 16px;
-//         font-weight: 600;
-//         position: absolute;
-//         color: #f5d4fd;
-//         left: -100px;
-//         top: 130px;
-//     }
-// }
-// `
-// const Profilestat = styled.div`
-// position: relative;
-// top: -80px;
-// color: #f5d4fd;
-// left:330px ;
-// font-size: 30px;
-// letter-spacing: .5px;
-// & h6{
-//     &.level{
-//         position: relative;
-//         top: -190px;
-//         color: #f5d4fd;
-      
-//         font-size: 10px;
-//         font-weight: 300;
-//         letter-spacing: .5px;
-//     }
-//     &.levelNum{
-//         position: relative;
-//         top: -245px;
-//         color: #f5d4fd;
-      
-//         font-size: 28px;
-//         font-weight: 600;
-//         letter-spacing: .5px;
-    
-//     }
-//     &.points{
-//         position: relative;
-//         top: -365px;
-//         color: #f5d4fd;
-//         left: 110px;
-//         font-size: 10px;
-//         font-weight: 300;
-//         letter-spacing: .5px;
-//     }
-//     &.pointsNum{
-//         position: relative;
-//         top: -420px;
-//         color: #f5d4fd;
-//         left: 100px;
-//         font-size: 28px;
-//         font-weight: 600;
-//         letter-spacing: .5px;
-//         & span{
-//             font-size: 15px;
-//         }
-//     }
-//     &.completed{
-//         position: relative;
-//         top: -540px;
-//         color: #f5d4fd;
-//         left: 240px;
-//         font-size: 10px;
-//         font-weight: 300;
-//         letter-spacing: .5px;
-//     }
-// }
-// `
-// const ProfileRank = styled.div`
-// position: relative;
-// top: -570px;
-// color: #f5d4fd;
-// left: 330px;
-// font-size: 30px;
-// letter-spacing: .5px;
-// width: 100%;
-// & h6{
-//     &.course{
-//         position: relative;
-//         top: 0px;
-//         color: #f5d4fd;
-      
-//         font-size: 10px;
-//         font-weight: 300;
-//         letter-spacing: .5px;
-//     }
-//     &.courseNum{
-//         position: relative;
-//         top: -105px;
-//         color: #f5d4fd;
-//         left: 20px;
-//         font-size: 28px;
-//         font-weight: 600;
-//         letter-spacing: .5px;
-//         & span{
-//             font-size: 15px;
-//         }
-//     }
-//     &.section{
-//         position: relative;
-//         top: -235px;
-//         color: #f5d4fd;
-//         left: 110px;
-//         font-size: 10px;
-//         font-weight: 300;
-//         letter-spacing: .5px;
-//     }
-//     &.sectionNum{
-//         position: relative;
-//         top: -279px;
-//         color: #f5d4fd;
-//         left: 130px;
-//         font-size: 28px;
-//         font-weight: 600;
-//         letter-spacing: .5px;
-//         & span{
-//             font-size: 15px;
-//         }
-//     }
-// }
-// `
 
 
 export default Dashboard;

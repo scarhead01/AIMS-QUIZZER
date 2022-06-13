@@ -83,9 +83,7 @@ const Main = () => {
         <Route exact path='/register' element={<Register />}/>
         </Route>
         </Routes>
- 
-      
-       
+        
           <Routes>
           <Route element ={<AuthRoute />}>
        <Route exact path='/' element={<Dashboard />} />

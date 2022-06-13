@@ -78,9 +78,9 @@ const recipee = recipe?.recipes;
    
   setTimeout(() => { 
     
-    if(loading){
+    if(!loading){
     settaken(1)
-  } }, 700);
+  } }, 300);
 
    
  }, [])
