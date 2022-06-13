@@ -197,7 +197,10 @@ position:relative ;
 color: #5A00CC;
 
 //margin: 1em ;
-
+@media screen and (min-width: 560px) and (max-width: 1068px) {
+  height: 2em;
+  width: 3em;
+  }
 `
 
 const BackDrops = styled.div`
@@ -222,7 +225,12 @@ const Logo1 = styled.img`
 height: 80px;
 position:relative ;
 color: #5A00CC;
-margin: auto 2em;
+margin: auto;
+@media screen and (min-width: 560px) and (max-width: 1068px) {
+  height: 4em;
+  margin-top:1em ;
+  width: 8em;
+  }
 `
 
 const NavBurger = styled.button`
@@ -307,10 +315,7 @@ display:block ;
 margin: auto;
 //margin-left:.5em ;
 @media screen and (min-width: 560px) and (max-width:768px) {
-  /* For mobile phones: */
- // grid-area: Sidebar;
-//visibility:hidden;
- //width: 3em;
+
  font-size: 20px;
  margin-left:.5em ;
 

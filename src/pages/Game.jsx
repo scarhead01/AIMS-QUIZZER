@@ -53,11 +53,15 @@ const Game = () => {
 const QuizCon = styled.div`
 display: flex;
 flex-wrap: wrap;
-height: 70%;
+height: 73%;
 margin: auto;
+@media screen and ( max-width:468px) {
+   height:85% ;
+  }
 `
 const QuizMenu = styled.div`
 width: 205px;
+
 height: 205px;
 left: 451px;
 top: 169px;
@@ -68,6 +72,28 @@ border-radius: 20px;
 justify-content: center;
 align-items: center;
 text-decoration: none;
+@media screen and ( max-width:468px) {
+   width:170px;
+   height: 170px;
+   & h1{
+  color: #e6ceec;
+  margin: auto;
+  font-size: 15px;
+ position: relative;
+  text-align: center;
+  
+ 
+}
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+   
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:205px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 205px;
+}
 & h1{
   color: #e6ceec;
   //margin: auto;
@@ -83,8 +109,12 @@ const CatIcon = styled.img`
 position: relative;
 margin: auto ;
 
-height: 220px ;
+height: 200px ;
 width: 200px;
+@media screen and ( max-width:468px) {
+   width:170px;
+   height: 170px;
+}
 &.active {
 	-webkit-animation: wobble-hor-bottom 1s both;
 	        animation: wobble-hor-bottom 1s both;

@@ -182,11 +182,11 @@ border-radius: 10px;
 @media screen and ( max-width:468px){
    width: 350px;
 }
-@media screen and ( min-width:468px) and ( max-width:668px){
-   width:450px;
+@media screen and ( min-width:468px) and ( max-width:608px){
+   width:485px;
 }
-@media screen and ( min-width:668px) and ( max-width:868px){
-   width:600px;
+@media screen and ( min-width:558px) and ( max-width:868px){
+   width:500px;
 }
 @media screen and ( min-width:868px) and ( max-width:1268px){
    width: 700px;

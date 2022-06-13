@@ -52,6 +52,18 @@ const AccountCon = styled.div`
   border-radius: 20px;
   padding-top:40px;
   margin-top: 20px;
+  @media screen and ( max-width:468px){
+   width:92%;
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+   width:400px;
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:500px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 500px;
+}
 `
 const ProfPic = styled.img`
   border-radius: 50%;
@@ -71,6 +83,18 @@ margin-top: 50px;
 margin: auto;
 width: 100%;
 display: block;
+@media screen and ( max-width:468px){
+font-size: 15px ;
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+ 
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+ 
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+
+}
   }
   & li{
     list-style: none;
@@ -84,6 +108,9 @@ display: block;
     font-size: 20px;
     align-items: left;
     justify-content: left;
+    @media screen and ( max-width:468px){
+font-size: 15px ;
+}
   }
   }
   & input{

@@ -129,10 +129,13 @@ const Login = () => {
     {/* <TopCon src={background}/> */}
     <Con>
     <Logo src={logo} />
+    <Tag>
     <h1>Welcome!</h1>
     <h2>Ready to test your knowledge? </h2>
     <p> Aims-Quizzer is an app that offers learning games about Hospitality management topics. </p>
     <Con3d src={poster}/>
+
+    </Tag>
     <LogoBack src={back}/>
     <Circle />
     <Circle1 />
@@ -305,10 +308,12 @@ mutation registerGoogle(
 const LoginCon = styled.div`
 //position: relative;
 height:100vh ;
-width:100vw;
-
+width:100%;
 display: flex;
-flex-direction: column;
+flex-wrap: wrap ;
+justify-content:center ;
+align-items: center ;
+//flex-direction: column;
 background: rgb(72,0,189);
 background: -moz-linear-gradient(61deg, rgba(72,0,189,1) 0%, rgba(83,0,201,1) 100%);
 background: -webkit-linear-gradient(61deg, rgba(72,0,189,1) 0%, rgba(83,0,201,1) 100%);
@@ -316,10 +321,26 @@ background: linear-gradient(61deg, rgba(72,0,189,1) 0%, rgba(83,0,201,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4800bd",endColorstr="#5300c9",GradientType=1);
 
 `
+
+const Tag = styled.div`
+  @media screen and ( max-width:468px){
+   width:70%;
+}
+@media screen and ( max-width:668px){
+   width:400px;
+  // visibility: hidden ;
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:20%;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 500px;
+}
+`
 const Con = styled.div`
 display:block ;
 margin: auto;
-width: 90vw ;
+width: 90% ;
 z-index:15;
 border-radius: 20px ;
 font-family: 'Grenze', serif;
@@ -371,19 +392,32 @@ top: 53% ;
 left:14% ;
 width:400px ;
 height:250px ;
+@media screen and ( max-width:468px){
+bottom:-700px ;
+width:100px ;
+height:150px ;
+@media screen and ( min-width:668px) and ( max-width:868px){
+  width:100px ;
+height:150px ;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 500px;
+}
+}
 `
 const LogoBack = styled.img`
-height:90vh;
+height:90%;
 width:53%;
 border-bottom-left-radius:20px ;
 position:absolute ;
 opacity:0.9 ;
+
 `
 const Circle = styled.div`
 position: absolute ;
 height:80px;
 width:80px ;
-right: 10vw;
+right: 10%;
 top: 10vh ;
 z-index:17 ;
 border-radius:50% ;
@@ -398,7 +432,7 @@ const Circle1 = styled.div`
 position: absolute ;
 height:30px;
 width:30px ;
-right: 9vw;
+right: 9%;
 top: 16vh ;
 z-index:17 ;
 border-radius:50% ;
@@ -413,10 +447,14 @@ const Circle2 = styled.div`
 position: absolute ;
 height:100px;
 width:100px ;
-right: 33vw;
+right: 33%;
 bottom: 11vh ;
 z-index:10 ;
 border-radius:50% ;
+@media screen and ( max-width:568px){
+
+visibility: hidden;
+}
 background: rgb(22,91,222);
 background: -moz-linear-gradient(61deg, rgba(22,91,222,1) 5%, rgba(14,173,223,1) 32%, rgba(0,224,194,1) 63%);
 background: -webkit-linear-gradient(61deg, rgba(22,91,222,1) 5%, rgba(14,173,223,1) 32%, rgba(0,224,194,1) 63%);
@@ -428,10 +466,14 @@ position: absolute ;
 display:block ;
 height:60px;
 width:60px ;
-right: 31vw;
+right: 31%;
 bottom: 12vh ;
 z-index:12 ;
 border-radius:50% ;
+@media screen and ( max-width:568px){
+
+visibility: hidden;
+}
 background: rgb(223,14,37);
 background: -moz-linear-gradient(61deg, rgba(223,14,37,1) 2%, rgba(255,11,156,1) 37%, rgba(205,22,211,1) 56%, rgba(152,28,186,1) 68%, rgba(0,77,224,1) 92%);
 background: -webkit-linear-gradient(61deg, rgba(223,14,37,1) 2%, rgba(255,11,156,1) 37%, rgba(205,22,211,1) 56%, rgba(152,28,186,1) 68%, rgba(0,77,224,1) 92%);
@@ -441,20 +483,28 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#df0e25",endCo
 
 const LoginBox = styled.div`
 visibility: hidden ;
-width: 350px;
-height: 62vh;
+width: 300px;
+height: 430px;
 //margin:auto ;
 box-shadow: 0 0 2px 3px rgba(0,0,0,0.2) ;
 position: absolute;
-right: 10vw;
+right: 11%;
 overflow:hidden ;
 border-radius: 15px;
 padding: 20px;
-margin-top:12vh ;
+margin-top:10vh ;
 background-color: #f4e6ff;
 display: flex;
 z-index:16 ;
 flex-direction: column;
+@media screen and ( max-width:768px){
+margin:22% auto ;
+width: 280px;
+height: 28em;
+left:0 ;
+right:0 ;
+
+}
 & h3{
   text-align: center;
   font-size: 20px;
@@ -495,7 +545,7 @@ visibility: hidden ;
 //margin:auto ;
 box-shadow: 0 0 2px 3px rgba(0,0,0,0.2) ;
 position: absolute;
-right: 10vw;
+right: 10%;
 overflow:hidden ;
 border-radius: 15px;
 padding: 20px;
@@ -504,6 +554,12 @@ background-color: #f4e6ff;
 display: flex;
 z-index:16 ;
 flex-direction: column;
+@media screen and ( max-width:468px){
+right: 0em;
+width: 280px;
+height: 28em;
+left: 0;
+}
 & h3{
   text-align: center;
   font-size: 20px;
@@ -544,6 +600,10 @@ height: 80px;
 color: #5A00CC;
 position:absolute ;
 z-index:10 ;
+@media screen and ( max-width:768px){
+height: 4em ;
+
+}
 
 `
 

@@ -93,7 +93,7 @@ const SectionRankbtn = styled.button`
 const RankCon = styled.div`
   position: relative;
   height: 500px;
-  width: 600px;
+
   margin: auto;
   background: rgba(220, 198, 239, 0.32);
   border-radius: 20px;
@@ -101,12 +101,36 @@ const RankCon = styled.div`
   margin-top: 20px;
   justify-content: center;
   align-items: center;
+  @media screen and ( max-width:468px){
+   width:88%;
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+   width:400px;
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:500px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 500px;
+}
+
   & table {
     grid-gap: 1rem;
     margin: auto;
     display: block;
     color: #fff;
-    width: 500px;
+    @media screen and ( max-width:468px){
+   width:70%;
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+   width:400px;
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:500px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 500px;
+}
     height: 100%;
     position: relative;
     font-family: halant;
@@ -131,6 +155,18 @@ const RankCon = styled.div`
     }
     &.label{
       width: 500px;
+      @media screen and ( max-width:468px){
+   width:70%;
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+   width:400px;
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:500px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 500px;
+}
     }
     &.pic{
       text-align: center;
@@ -140,12 +176,24 @@ const RankCon = styled.div`
 const RankPic = styled.img`
   height: 30px;
   width: 30px;
-  border-radius: 50%;
+  border-radius: 70%;
   border: 1px solid #fff;
 `
 const TableConSection = styled.div`
-    margin: 20px 60px;
+    //margin: 20px 60px;
     width: 500px;
+    @media screen and ( max-width:468px){
+   width:100%;
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+   width:400px;
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:500px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 500px;
+}
     & h2{
       font-family: halant;
       font-weight: 600;
@@ -162,8 +210,19 @@ const TableConSection = styled.div`
   }
 `
 const TableConCourse = styled.div`
-   margin: 20px 60px;
-    width: 500px;
+  // margin: 20px 60px;
+   @media screen and ( max-width:468px){
+   width:100%;
+}
+@media screen and ( min-width:468px) and ( max-width:668px){
+   width:400px;
+}
+@media screen and ( min-width:668px) and ( max-width:868px){
+   width:500px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 500px;
+}
     position: absolute;
     top: 43px;
     & h2{
