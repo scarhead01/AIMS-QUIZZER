@@ -137,7 +137,6 @@ const FindMenuCon = styled.div`
   font-size: 18px;
   color:#f7e0f5 ;
 }
-  
 `
 const NavCon = styled.div`
 display:inline-flex ;
@@ -181,11 +180,6 @@ cursor: pointer;
 
 `
 const Icon = styled.i`
-//margin-top: 6px ;
-//position: relative;
-//display: block ;
-//display:flex ;
-//flex-direction: flex-end;
 font-size: 30px;
 `
 

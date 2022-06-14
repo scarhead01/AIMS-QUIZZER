@@ -55,6 +55,7 @@ query GetQuiz($gameId: ID!) {
       cName
       quizQuestions{
         question
+        cAnswer
       }
     }
   }

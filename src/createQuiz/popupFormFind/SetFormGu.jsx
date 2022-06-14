@@ -32,13 +32,6 @@ const SetFormGu = ({ setOpenModal, game, cat,subCat, set }) => {
     })
     
     const Confirm = () =>{
-        
-  if(game==='find'){
-    setgameId("6227003f9ac1104969591b20")
-  }else if(game==='guess'){
-    setgameId('629d6ece913e0070d05a1d41')
-  }
-
       addSet()
       setOpenModal(false);
     }

@@ -21,7 +21,7 @@ const gameId ="629c247d6a10ae7b11e3c2e2"
    console.log(data)
    //const {} = useParams();
    const {games} = useParams();
-   const cate=data?.getQuiz?.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question);
+   const cate=data?.getQuiz?.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question).cAnswer;
    const cates=data?.getQuiz?.quizCategories?.find(o => o.cName === cats)?.quizQuestions;
 console.log(cate)
   return (
@@ -40,7 +40,7 @@ console.log(cate)
      <h1>Correct</h1>
 
    
-          <Find key={cate} cate={cate} cat={cats} >{cate.cAnswer} </Find>
+          <Find key={cate} cate={cate} cat={cats} >{cate} </Find>
      
      <h1>Wrong</h1>
     { data?.getQuiz.quizCategories?.find(o => o.cName === cats)?.quizQuestions?.find(o => o.question === question)?.wAnswer?.map((cate) =>  (
