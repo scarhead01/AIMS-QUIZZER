@@ -124,6 +124,7 @@ position: absolute;
 left: 0;
 width: 100%;
     height: 100vh;
+    overflow:auto ;
     background-color: rgba(44, 44, 44,0.3);
     top:0;
     display: flex;
@@ -146,10 +147,25 @@ const ModalContainer = styled.div`
     margin: auto;
    
     bottom: 0px;
-    width: 500px;
-    height: 500px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    width: 30%;
+    height: 70%;
+    @media screen and ( max-width:468px){
+      width: 70%;
+    height: 70%;
+  }
+@media screen and ( min-width:468px) and ( max-width:608px){
+  width: 70%;
+    height: 70%;
+}
+  @media screen and ( min-width:558px) and ( max-width:868px){
+    width: 60%;
+    height: 70%;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+  width: 40%;
+    height: 70%;
+}
+    border-radius:15px ;
     background: #d0beff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
@@ -237,7 +253,7 @@ const BodyButton = styled.button`
 `
 const CategoryCon = styled.div`
 display:flex ;
-width: 80% ;
+width: 95% ;
 margin-bottom:20px ;
 & h3{
   font-weight:300 ;
@@ -251,8 +267,8 @@ position: relative;
 top:-20px;
 left:-8px;
 margin: auto;
-height: 140px ;
-width: 140px;
+height:100%;
+width:100%;
 &.active {
 	-webkit-animation: wobble-hor-bottom 1s both;
 	        animation: wobble-hor-bottom 1s both;

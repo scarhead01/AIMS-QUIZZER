@@ -271,7 +271,7 @@ const Return = () => {
      
        <QuestionH>
      <h4>Question {currQuestion+1}:</h4>
-      <h1>{guesse?.question}</h1> 
+      <h1 className='question'>{guesse?.question}</h1> 
        </QuestionH>
 
     
@@ -383,11 +383,12 @@ getQuiz(gameId: "629c247d6a10ae7b11e3c2e2") {
 `
 
 const FindGamesCon = styled.div`
-margin: 5em auto;
+
 
 width: 100%;
 font-size: 12px;
-font-family: halant;
+font-family: Grenze;
+    font-style: normal;
 justify-content:center ;
 align-items:center ;
 position: relative;
@@ -396,7 +397,7 @@ position: relative;
 & h1{
 text-align: center;
 color:white;
-font-weight: normal;
+font-weight: 600;
 font-size: 1.5em ;
 }
 & h2{
@@ -424,10 +425,28 @@ text-align:center ;
 justify-content:center ;
 align-items: center ;
 margin: auto;
+margin-top:4em ;
 display: inline-flex ;
+
 & h4{
-    color: #cdc0c0;
+    color: #ebe1e1;
     margin-right: 1em;
+    @media screen and ( max-width:468px){
+ width:30% ;
+ top: 20px;
+ position: absolute; ;
+ 
+  }
+& h1{
+    color: #650101;
+    &.question{
+  @media screen and ( max-width:468px){
+ width:30% ;
+ color: #650101;
+  }
+}
+  }
+  
 }
 `
 const IngredientPic = styled.img`
@@ -464,6 +483,8 @@ const IngredientsCon = styled.div`
     align-items: center;
     display: flex;
     flex-wrap: wrap;
+    font-family: Grenze;
+    font-style: normal;
 `
 const IngredientList = styled.button`
    color: white;
@@ -476,6 +497,9 @@ border:none;
 background: linear-gradient(152.45deg, rgba(205, 184, 223, 0.46) 7.59%, rgba(201, 195, 206, 0.1932) 55.9%, rgba(204, 187, 218, 0.46) 103.69%);
 border-radius: 15px;
 position: relative;
+font-family: Grenze;
+    font-style: normal;
+    font-weight: 600 ;
 cursor: pointer;
    & h1 {
        position: relative;

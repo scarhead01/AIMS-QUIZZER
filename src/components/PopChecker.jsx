@@ -44,6 +44,8 @@ const PopChecker = ({setpopChecks,correct,answer,setnextQuests}) => {
 const ModalBackground = styled.div`
 position: absolute;
 left: 0;
+top: 0;
+
 width: 100%;
     height: 100vh;
     background-color: rgba(44, 44, 44,0.3);
@@ -54,6 +56,7 @@ width: 100%;
 `
 const ModalBackgroundCon = styled.div`
 position: absolute;
+top: 0;
 left: 0;
 width: 100%;
     height: 100vh;
@@ -68,10 +71,9 @@ const ModalContainer = styled.div`
     margin: auto;
    
     bottom: 0px;
-    width: 500px;
-    height: 500px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    width: 60%;
+    height: 60%;
+    border-radius:15px ;
     background: #d0beff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;

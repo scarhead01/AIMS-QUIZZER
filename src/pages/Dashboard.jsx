@@ -64,10 +64,11 @@ align-items:center ;
 width:100%;
 
 max-height:100vh;
-overflow-y: auto;
+overflow: auto;
 `
 const Con = styled.div`
 color: #d2c3c3;
+width:100%;
 & .img {
   max-width: 100%;
   display: block;
@@ -88,12 +89,12 @@ color: #d2c3c3;
 }
 
 &.card {
-  padding: 2.5rem 2rem;
+  padding: 1rem ;
   border-radius: 10px;
   //background-color: rgba(255, 255, 255, .5);
  // max-width: 500px;
   //box-shadow: 0 0 30px rgba(0, 0, 0, .15);
-  margin: 1rem;
+  
   position: relative;
   transform-style: preserve-3d;
   overflow: hidden;

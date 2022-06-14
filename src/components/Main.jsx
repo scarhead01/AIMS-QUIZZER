@@ -46,7 +46,7 @@ grid-area: Main;
 margin: 0px ;
 height: 100%;
 width:80vw;
-padding-top: 3em ;
+
 
 background: linear-gradient(180deg, #5A00CC 0%, #2B0062 100%);
 @media screen and (max-width: 560px) {
@@ -55,7 +55,15 @@ background: linear-gradient(180deg, #5A00CC 0%, #2B0062 100%);
  //visibility:hidden;
  width: 100vw;
  margin:0px ;
- padding-top: 3em ;
+ 
+}
+`
+const Co = styled.div`
+margin: 3em;
+@media screen and (max-width: 560px) {
+  /* For mobile phones: */
+ 
+  margin: 3em 0;
 }
 `
 
@@ -76,14 +84,14 @@ const Main = () => {
    const {user, logout} =useContext(AuthContext);
   const main = user ? (<MainCon>
         {/* <AuthCheck> */}
-     
+     <Co>
         <Routes>
           <Route element ={<AuthRouteOff />}>
         <Route exact path='/login' element={<Login />}/>
         <Route exact path='/register' element={<Register />}/>
         </Route>
         </Routes>
-        
+
           <Routes>
           <Route element ={<AuthRoute />}>
        <Route exact path='/' element={<Dashboard />} />
@@ -139,7 +147,7 @@ const Main = () => {
   <path fill="#FF00F5" fill-opacity=".5" d="M0,64L30,80C60,96,120,128,180,133.3C240,139,300,117,360,128C420,139,480,181,540,170.7C600,160,660,96,720,106.7C780,117,840,203,900,234.7C960,267,1020,245,1080,202.7C1140,160,1200,96,1260,85.3C1320,75,1380,117,1410,138.7L1440,160L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
 </svg>
       </Svg2> */}
-     
+     </Co>
   </MainCon>):(
 <MainCon1 >
 

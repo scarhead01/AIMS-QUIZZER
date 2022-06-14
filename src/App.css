@@ -5,6 +5,8 @@ html,body{
     width: 100%;
     left: 0px;
     margin: 0px;
+    font-family: Grenze;
+    font-style: normal;
 }
 @media screen and (prefers-reduced-motion: reduce) {  
     * {

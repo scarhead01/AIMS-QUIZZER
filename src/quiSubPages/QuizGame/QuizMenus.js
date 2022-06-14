@@ -37,9 +37,8 @@ const QuizMenus = () => {
   const {diffs} = useParams();
   
   return <>
-    {loading?<FindMenuCon> <FindL></FindL>
-    <FindL></FindL>
-    <FindL></FindL>
+    {loading?<FindMenuCon> 
+     
     </FindMenuCon> :
     <FindMenuCon>
     { data?.getQuiz?.quizCategories?.map((cate) =>  (
@@ -104,32 +103,24 @@ const FindMenuCon = styled.div`
 
 	flex-direction: column;
   position: relative;
-  max-height: 100vh;
-  margin: auto ;
+  max-height: 100%;
+
   //justify-content: center ;
   align-items:center ;
-  width: 100%;
+  width: 100vw;
+  margin: auto  ;
  padding-top: 60px;
+   margin: auto ;
+   @media screen and ( max-width:468px){
+    margin: auto 1rem;
+  }
+@media screen and ( min-width:468px) and ( max-width:608px){
+  width: 400px;}
+  
+  
 
   
 `
 
-const MenuList = styled(Link)`
-color: white;
-font-size: 18px;
-margin: auto;
-width: 367px;
-height: 55px;
-border:none;
-background: linear-gradient(180deg, rgba(156, 132, 194, 0.68) 0%, rgba(201, 100, 249, 0.74) 100%);
-cursor: pointer;
-& h1{
-    font-size: 24px;
-    margin-left: 15px;
-    margin-top: 10px;
-    position: relative;
-    left: -170px;
 
-}
-`
 export default QuizMenus;

@@ -70,6 +70,17 @@ import styled from "styled-components";
         display: flex;
         flex-direction: column;
         padding: 25px;
+        @media screen and ( max-width:468px){
+   width: 300px;
+}
+@media screen and ( min-width:468px) and ( max-width:608px){
+  width: 300px;}
+@media screen and ( min-width:558px) and ( max-width:868px){
+  width: 300px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width: 300px;
+}
     `
     const TitleCloseBtn = styled.button`
      display: flex;

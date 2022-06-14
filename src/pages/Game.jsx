@@ -63,9 +63,8 @@ const QuizMenu = styled.div`
 width: 205px;
 
 height: 205px;
-left: 451px;
-top: 169px;
-margin: auto;
+
+margin: 1rem auto;
 background: linear-gradient(180deg, #ca9bff 0%, #c091ff 100%);
 
 border-radius: 20px;
@@ -86,13 +85,16 @@ text-decoration: none;
 }
 }
 @media screen and ( min-width:468px) and ( max-width:668px){
-   
+  margin: 1.7rem auto;
+  width:205px;
 }
 @media screen and ( min-width:668px) and ( max-width:868px){
    width:205px;
+   margin: 1.7rem auto;
 }
 @media screen and ( min-width:868px) and ( max-width:1268px){
    width: 205px;
+   margin: 2rem auto;
 }
 & h1{
   color: #e6ceec;
@@ -109,8 +111,8 @@ const CatIcon = styled.img`
 position: relative;
 margin: auto ;
 
-height: 200px ;
-width: 200px;
+height:100%;
+width:100%;
 @media screen and ( max-width:468px) {
    width:170px;
    height: 170px;

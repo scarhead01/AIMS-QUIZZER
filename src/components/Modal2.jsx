@@ -159,10 +159,9 @@ const ModalContainer = styled.div`
     margin: auto;
    
     bottom: 0px;
-    width: 500px;
-    height: 500px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    width: 70%;
+    height: 70%;
+    border-radius:15px ;
     background: #d0beff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;

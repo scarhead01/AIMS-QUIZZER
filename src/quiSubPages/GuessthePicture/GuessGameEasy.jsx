@@ -467,6 +467,15 @@ box-shadow: 0 0 2px 2px rgba(0,0,0,0.3) ;
 &.active {
    border:2px solid #83ff68;
    }
+
+   @media screen and ( max-width:468px){
+ width:90% ;
+  }
+@media screen and ( min-width:468px) and ( max-width:608px){
+  width: 60%;}
+  @media screen and ( min-width:558px) and ( max-width:868px){
+  width:60%;
+}
 `
 const BasketPic = styled.img`
 align-items: left;
@@ -484,19 +493,28 @@ width: 50px;
 `
 const IngredientsCon = styled.div`
     margin: 40px auto;
-    width: 50%;
+    width: 80%;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-wrap: wrap;
+    @media screen and ( max-width:468px){
+ width:90% ;
+  }
+@media screen and ( min-width:468px) and ( max-width:608px){
+  width: 95%;}
+  @media screen and ( min-width:558px) and ( max-width:868px){
+  width:95%;
+}
 `
 const IngredientList = styled.button`
    color: white;
 font-size: 18px;
 margin: 10px;
+width: 300px ;
 border:none;
 background: linear-gradient(152.45deg, rgba(205, 184, 223, 0.46) 7.59%, rgba(201, 195, 206, 0.1932) 55.9%, rgba(204, 187, 218, 0.46) 103.69%);
-border-radius: 15px;
+border-radius: 8px;
 position: relative;
 cursor: pointer;
    & h1 {
@@ -548,7 +566,7 @@ position: relative;
 border-radius: 90px;
 height: 100%;
 right: 40px;
-bottom: -80px;
+
 padding: 10px 40px;
 border: none;
 box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
@@ -576,7 +594,7 @@ const HintCon = styled.div`
   flex-direction: column;
   width: 100px;
   height: -150px;
-  bottom: -90px;
+
   margin: auto;
   & h3 {
        padding: 5px 8px;
