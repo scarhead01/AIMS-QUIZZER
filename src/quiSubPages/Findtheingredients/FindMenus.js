@@ -28,6 +28,7 @@ const FindMenus = () => {
 
  );
 
+
  console.log(data)
  //const cate = ftI;
 
@@ -93,6 +94,33 @@ query($cats:String!){
  }
 }
 `
+const FETCH_RECIPE_QUERY = gql`
+query ( $cats: String!, $scName: String!, $setNum: String!) {
+  getRecipes(gameId: "6227003f9ac1104969591b20", cName: $cats, scName: $scName, setNum: $setNum) {
+
+        
+          recipes {
+            rName
+            rImgUrl
+            rIngredients {
+              iName
+              imgUrl
+              imgCc
+              imgUrlCc
+            }
+            wIngredients {
+              iName
+              imgUrl
+              imgCc
+              imgUrlCc
+            }
+          
+        }
+      }
+  }
+
+`
+
 const FindL = styled.div`
 border-radius: 10px ;
 outline: none;

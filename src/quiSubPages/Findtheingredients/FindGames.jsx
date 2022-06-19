@@ -12,10 +12,7 @@ const FindGames = () => {
   const {cats,scName,setNum} = useParams();
   const [currQuestion, setCurrQuestion] = useState(0);
   const {loading, data:{getRecipes: recipe}=[]} = useQuery(FETCH_RECIPE_QUERY,{
-    // onCompleted: refetch,
-    // pollInterval:100,
-    // refetchQueries: [{ query: FETCH_CATEGORY_QUERY }],
-    // pollInterval: 100
+  
     variables: {cats,scName,setNum},
     
 

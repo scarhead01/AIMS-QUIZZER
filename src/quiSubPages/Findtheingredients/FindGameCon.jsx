@@ -16,7 +16,7 @@ import PopChecker from '../../components/PopChecker';
 import jwtDecode from 'jwt-decode'
 import FindGameChoices from './FindGameChoices';
 
-const FindGameCon = ({recipe},loading,setCurrQuestions) => {
+const FindGameCon = ({recipe}) => {
     const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen1, setModalOpen1] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
@@ -29,6 +29,7 @@ const [currQuestion, setCurrQuestion] = useState(0);
  const [imgCc, setimgCc] = useState("")
  const [imgUrlCc, setimgUrlCc] = useState("")
  const [show, setShow] = useState(false)
+ const [showC, setShowC] = useState(false)
  const [taken, settaken] = useState(0)
  const [empty, setempty] = useState(true)
  const [completed, setcompleted] = useState(false)
@@ -45,7 +46,7 @@ const [numTaken, setnumTaken] = useState('')
 const [totalTakenScore, settotalTakenScore] = useState('')
 const [firstTake, setfirstTake] = useState('')
 const [latestTake, setlatestTake] = useState('')
-const [ingredientcc, setchoices] = useState([])
+let [ingredients, setchoices] = useState([])
 
 
 
@@ -91,27 +92,25 @@ const latestTakes=game?.getFtIngredients?.find(o=>o.id==="6227003f9ac1104969591b
 console.log(firstTakes)
 
 useEffect(() => {
-   
-  setTimeout(() => { 
     
-    if(loading){
+    
+  
     settaken(1)
    // Choices();
-  } }, 200);
+
 
    
   }, [])
-// useEffect(() => {
+useEffect(() => {
    
-//   setTimeout(() => { 
+  setTimeout(() => { 
     
-//     if(loading){
-//     //settaken(1)
-//     Choices();
-//   } }, 300);
+    //settaken(1)
+  setShowC(true)
+  }, 1500);
 
    
-//  }, [taken])
+ }, [])
 
  
 const finalScores = firstScore;
@@ -159,17 +158,23 @@ const recipee = recipe?.recipes;
  const wingredients = recipes?.wIngredients;
  const ingredientss = ringredients?.concat(wingredients);
 
-//  useEffect(() => {
-
-//    Choices()
-//  }, [])
- 
 
 //  function Choices(){
 //   const ingredients=ingredientss?.sort(()=> Math.random() - 0.6)
 //  setchoices(ingredients)
 //  }
-const ingredients=useMemo(()=>ingredientss?.sort(()=> Math.random() - 0.6),[taken])
+//const ingredientsss=ingredientss?.sort(()=> Math.random() - 0.6)
+//const ingredients =[]
+
+ 
+//const ingredients=useMemo(()=>ingredientss?.sort(()=> Math.random() - 0.6),[taken])
+
+useEffect(() => {
+  ingredients=ingredientss?.sort(()=> Math.random() - 0.6)
+  setchoices(ingredients)
+}, [showC])
+
+console.log(ingredients)
  const Selected = (diff,imgurl,imgcc,imgccurl) => {
     setSelected([... selected,diff]);
     if(show === false){
@@ -199,14 +204,14 @@ const ingredients=useMemo(()=>ingredientss?.sort(()=> Math.random() - 0.6),[take
     if(currQuestion<recipee?.length-1 && taken < recipee?.length){
       
          setCurrQuestion(currQuestion+1)
-         setCurrQuestions(currQuestion+1)
+       //  setCurrQuestions(currQuestion+1)
          settaken(taken+1)
          setnextQuest(false)
        }
     else if(taken >= recipee?.length || repeat.length>0){
     
      setCurrQuestion(repeat[0])
-     setCurrQuestions(repeat[0])
+    /// setCurrQuestions(repeat[0])
      setnextQuest(false)
      settaken(taken+1)
         
@@ -487,7 +492,7 @@ const Return = () => {
                 {/* <FindGameChoices ingredients={ingredients} setimgUrl={setimgUrl} setimgCc={setimgCc} setimgUrlCc={setimgUrlCc} setModalOpen2={setModalOpen2} setSelected={setSelected} selected={selected} lists={list} show={show}/> */}
                 <IngredientsCon>
 
-{ ingredients?.map(menu=>
+{ showC===true &&  ingredients?.map(menu=>
 
          <IngredientList key={menu.iName} 
          onClick={() =>{
