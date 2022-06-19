@@ -7,7 +7,7 @@ import {ApolloProvider} from '@apollo/react-hooks';
 import {setContext}  from 'apollo-link-context';
 
 const httpLink = createHttpLink({
-    uri:'http://localhost:5000/graphql'
+    uri:'http://localhost:5000/graphql'||'https://aimsquizzer.herokuapp.com/graphql'
 
 });
 //'https://aimsquizzer.herokuapp.com/graphql'|| 
