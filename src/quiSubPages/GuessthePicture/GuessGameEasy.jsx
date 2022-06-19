@@ -134,7 +134,7 @@ const guesss = guess?.getGuessQuizzes?.guessQuiz;
  const choices = gChoices?.concat(wChoices);
 
 
- console.log(gChoices[0]?.chName)
+ //console.log(gChoices[0]?.chName)
  
   console.log("score: "+ score)
   const ingredients=useMemo(()=>choices?.sort(()=> Math.random() - 0.6),[taken])
