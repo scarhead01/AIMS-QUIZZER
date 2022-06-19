@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const PopChecker = ({setpopChecks,correct,answer,setnextQuests}) => {
+const PopChecker2 = ({setpopChecks,correct,answer,setnextQuests}) => {
 
     console.log(correct)
 
@@ -17,9 +17,7 @@ const PopChecker = ({setpopChecks,correct,answer,setnextQuests}) => {
          <>
          <h1>The Correct Answer is</h1>
          {
-          answer?.map((ans=>(
-                           <h1 key={ans}> {ans}</h1>
-         )) )
+          answer
         }
        </>
          }
@@ -283,4 +281,4 @@ const Error = styled.div`
   font-weight: 600;
 `
 
-export default PopChecker
+export default PopChecker2

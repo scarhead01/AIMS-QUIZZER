@@ -107,7 +107,7 @@ const FindMenuCon = styled.div`
 
   //justify-content: center ;
   align-items:center ;
-  width: 100vw;
+ 
   margin: auto  ;
  padding-top: 60px;
    margin: auto ;
@@ -115,7 +115,7 @@ const FindMenuCon = styled.div`
     margin: auto 1rem;
   }
 @media screen and ( min-width:468px) and ( max-width:608px){
-  width: 400px;}
+  width:100%;}
   
   
 

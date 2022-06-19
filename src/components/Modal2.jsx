@@ -90,7 +90,7 @@ function Modal2({ setOpenModal2 }) {
            </BodyButton>
            <h2>Category</h2>
            <CategoryCon>
-           <BodyButton2 className={cat==="Food" ? "active":""} onClick={Category.bind(this,"Food")} onMouseOver={ImgHover.bind(this,"Food")} onMouseLeave={ImgnoHover.bind(this,"Food")} >
+           <BodyButton2 className={cat==="Food" ? "active":""} onClick={Category.bind(this,"Food")} disabled={true} onMouseOver={ImgHover.bind(this,"Food")} onMouseLeave={ImgnoHover.bind(this,"Food")} >
               <CatIcon src={FoodIcon} className={hover === "Food"  ? "active":""}  />
               <h3>FOOD</h3>
                
@@ -99,10 +99,10 @@ function Modal2({ setOpenModal2 }) {
            <CatIcon src={BeverageIcon} className={hover === "Beverages" ? "active":""}  />
               <h3>EQUIPMENT</h3>
            </BodyButton2>
-           <BodyButton2 className={cat==="Utensils" ? "active":""} onClick={Category.bind(this,"Utensils")} onMouseOver={ImgHover.bind(this,"Beverages")} onMouseLeave={ImgnoHover.bind(this,"Beverages")} >
+           {/* <BodyButton2 className={cat==="Utensils" ? "active":""} onClick={Category.bind(this,"Utensils")} onMouseOver={ImgHover.bind(this,"Beverages")} onMouseLeave={ImgnoHover.bind(this,"Beverages")} >
            <CatIcon src={BeverageIcon} className={hover === "Beverages" ? "active":""}  />
               <h3>UTENSILS</h3>
-           </BodyButton2>
+           </BodyButton2> */}
            </CategoryCon>
           
        </ModalBody>
@@ -159,8 +159,24 @@ const ModalContainer = styled.div`
     margin: auto;
    
     bottom: 0px;
-    width: 70%;
+    width: 30%;
     height: 70%;
+    @media screen and ( max-width:468px){
+      width: 70%;
+    height: 70%;
+  }
+@media screen and ( min-width:468px) and ( max-width:608px){
+  width: 70%;
+    height: 70%;
+}
+  @media screen and ( min-width:558px) and ( max-width:868px){
+    width: 60%;
+    height: 70%;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+  width: 40%;
+    height: 70%;
+}
     border-radius:15px ;
     background: #d0beff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -240,6 +256,7 @@ const BodyButton = styled.button`
         padding: 10px ;
         width: 60%;
         margin: auto;
+        margin-bottom: 1rem ;
         border-radius: 5px;
         box-shadow: 0 0 4px 0.5px rgba(0,0,0,0.2);
         &.active{

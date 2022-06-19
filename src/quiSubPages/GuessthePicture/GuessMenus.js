@@ -69,6 +69,9 @@ query($cats:String!){
             userId
             score
           }
+          guessQuiz{
+            id
+          }
          
         }
       }
@@ -98,12 +101,12 @@ animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 `
   
 const FindMenuCon = styled.div`
- overflow-y: auto;
+ //overflow-y: auto;
   display: flex;
 
 	flex-direction: column;
   position: relative;
-  max-height: 100vh;
+  max-height: 100%;
   margin: auto ;
   //justify-content: center ;
   align-items:center ;

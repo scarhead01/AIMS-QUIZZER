@@ -93,7 +93,7 @@ const SectionRankbtn = styled.button`
 const RankCon = styled.div`
   position: relative;
   height: 500px;
-
+  width: 500px;
   margin: auto;
   background: rgba(220, 198, 239, 0.32);
   border-radius: 20px;

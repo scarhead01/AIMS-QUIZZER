@@ -96,7 +96,7 @@ function Modal({ setOpenModal }) {
            </BodyButton>
            <h2>Category</h2>
            <CategoryCon>
-           <BodyButton2 className={cat==="Food" ? "active":""} onClick={Category.bind(this,"Food")} onMouseOver={ImgHover.bind(this,"Food")} onMouseLeave={ImgnoHover.bind(this,"Food")} >
+           <BodyButton2 className={cat==="Food" ? "active":"" } disabled={true} onClick={Category.bind(this,"Food")} onMouseOver={ImgHover.bind(this,"Food")} onMouseLeave={ImgnoHover.bind(this,"Food")} >
               <CatIcon src={FoodIcon} className={hover === "Food"  ? "active":""}  />
               <h3>FOOD</h3>
                
@@ -241,9 +241,11 @@ const BodyButton = styled.button`
         color: #f7ceff;
         border: none;
         cursor: pointer;
+      
         padding: 10px ;
         width: 60%;
         margin: auto;
+        margin-bottom:1rem ;
         border-radius: 5px;
         box-shadow: 0 0 4px 0.5px rgba(0,0,0,0.2);
         &.active{

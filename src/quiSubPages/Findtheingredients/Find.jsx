@@ -285,13 +285,24 @@ outline: none;
 //margin: 0px;
 border-style:  none;
 height: 10em;
-width:70% ;
+width:500px ;
 cursor: pointer;
 font-family: Grenze;
     font-style: normal;
 //margin:auto ;
 margin-bottom: 10px;
 background: linear-gradient(180deg, rgba(156, 132, 194, 0.68) 0%, rgba(201, 100, 249, 0.74) 100%);
+@media screen and ( max-width:468px){
+ width:380px;
+  }
+@media screen and ( min-width:468px) and ( max-width:608px){
+  width: 430px}
+  @media screen and ( min-width:558px) and ( max-width:868px){
+  width:430px;
+}
+@media screen and ( min-width:868px) and ( max-width:1268px){
+   width:430px;
+}
 `
 const SubImgCon = styled.div`
 height: 100%;

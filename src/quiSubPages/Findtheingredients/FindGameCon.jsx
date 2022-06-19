@@ -33,18 +33,32 @@ const FindGameCon = () => {
  const [completed, setcompleted] = useState(false)
  const [firstScore, setfirstScore] = useState(0)
 const [popCheck, setpopCheck] = useState(false)
- const {cats,scName,setNum} = useParams();
+ const {cats,scName,setNum,diffs} = useParams();
  const [nextQuest, setnextQuest] = useState(false)
 const [answer, setanswer] = useState('')
+const [dayTaken, setdayTaken] = useState('')
+const [yearTaken, setyearTaken] = useState('')
+//const [month, setmonthTaken] = useState('')
+const [weekNum, setweekNum] = useState('')
+const [numTaken, setnumTaken] = useState('')
+const [totalTakenScore, settotalTakenScore] = useState('')
+const [firstTake, setfirstTake] = useState('')
+const [latestTake, setlatestTake] = useState('')
+
+
 
 
 const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
 
 const userId = decodedToken?.id
+const diff=diffs
 const dateObj = new Date();
-const month = dateObj.getUTCMonth() + 1; //months from 1-12
-const day = dateObj.getUTCDate();
-const year = dateObj.getUTCFullYear();
+const months = dateObj.getUTCMonth() + 1; //months from 1-12
+const month = months.toString();
+const days = dateObj.getUTCDate();
+const day = days.toString();
+const years = dateObj.getUTCFullYear();
+const year = years.toString();
 
 const newdate = year + "/" + month + "/" + day;
 console.log(newdate)
@@ -56,16 +70,49 @@ console.log(newdate)
 
 },
 
+
 );
+const { data} = useQuery(FETCH_CATEGORY_QUERY,{
+   
+  variables: {cats},
+
+},);
+const { data:game} = useQuery(FETCH_GAME_QUERY);
+const numTakens = data?.subCategories?.find(o=>o.scName===scName)?.subTaken?.find(o=>o.userId===userId)?.numTaken;
+console.log(data)
+
+const totalTakenScores = data?.subCategories?.find(o=>o.scName===scName)?.subTaken?.find(o=>o.userId===userId).totalTakenScore;
+const firstTaker =  data?.subCategories?.find(o=>o.scName===scName)?.sets?.find(o=>o.setNum===setNum)?.userScore?.find(o=>o.userId===userId);
+
+const firstTakes=game?.getFtIngredients?.find(o=>o.id==="6227003f9ac1104969591b20")?.takes?.find(o=>o.userId===userId)?.firstTake;
+const latestTakes=game?.getFtIngredients?.find(o=>o.id==="6227003f9ac1104969591b20")?.takes?.find(o=>o.userId===userId)?.latestTake;
+console.log(firstTakes)
+
 const finalScores = firstScore;
 
 const finalScore = finalScores?.toString();
  
 const gameId = "6227003f9ac1104969591b20"
 const [AddSetScore,{error}] = useMutation(ADD_SET_SCORE,{    
-  variables:  {cats,scName,setNum,userId,finalScore,newdate},
+  variables:  {cats,scName,setNum,userId,diff,finalScore,newdate},
   refetchQueries: [{ query: FETCH_CATEGORY_QUERY, variables:{cats} }]
 })
+
+const [AddGameTaken,] = useMutation(ADD_GAMETAKEN,{    
+  variables:  {cats,scName,setNum,userId,diff,finalScore,month,day,year,weekNum},
+  refetchQueries: [{ query: FETCH_CATEGORY_QUERY, variables:{cats} }]
+})
+
+const [AddSubTaken] = useMutation(ADD_SUBTAKEN,{    
+  variables:  {cats,scName,userId,diff,numTaken,totalTakenScore},
+  refetchQueries: [{ query: FETCH_CATEGORY_QUERY, variables:{cats} }]
+})
+
+const [AddTakes] = useMutation(ADD_TAKES,{    
+  variables:  {userId,firstTake,latestTake},
+  refetchQueries: [{ query: FETCH_CATEGORY_QUERY, variables:{cats} }]
+})
+
 
 
 
@@ -131,22 +178,19 @@ const recipee = recipe?.recipes;
          setnextQuest(false)
        }
     else if(taken >= recipee?.length || repeat.length>0){
-      if(repeat[0]===currQuestion){
-        
-          setCurrQuestion(repeat[1])
-          settaken(taken+1)
-          setnextQuest(false)
-       
-        }else{
+    
      setCurrQuestion(repeat[0])
      setnextQuest(false)
      settaken(taken+1)
-        }
+        
    
+    }
+    else if(repeat?.length<1&&score===recipee?.length){
+      setcompleted(true)
     }
     console.log('next question is'+ repeat[0])
 
-   }
+   } 
   useEffect(() => {
    if(nextQuest===true){
 
@@ -160,9 +204,60 @@ const recipee = recipe?.recipes;
  if(completed===true) {
    console.log(cats+" "+scName+" "+setNum+ " "+finalScore+" "+userId)
  // addSet()
+
+ AddSetScore()
+ AddTakes()
+ AddSubTaken()
+ AddTaken()
 }
  }, [completed])
  
+ const AddTaken = () =>{
+ 
+  if(days<8){
+   
+     setweekNum('1');
+  }else if(days>7 && days<15){
+    
+    setweekNum('2');
+ }else if(days>14 && days<22){
+
+  setweekNum('3');
+  }else if(days>21 && days<29){
+  
+    setweekNum('4');
+  }else if(days>28 && days<32){
+   
+    setweekNum('5');
+  }
+if(!numTakens){
+setnumTaken('1')
+}else if(numTakens){
+  setnumTaken(numTakens+1)
+}
+if(!totalTakenScores){
+settotalTakenScore(finalScore)
+}else if(totalTakenScores){
+  setnumTaken(totalTakenScores+firstScore)
+}
+if(!firstTaker){
+if(!firstTakes){
+setfirstTake(firstScore)
+}else if(firstTakes){
+  setfirstTake(firstTakes+firstScore)
+}
+}
+if(!latestTakes){
+setlatestTake(firstScore)
+}else if(latestTakes){
+  setnumTaken(latestTakes+firstTake)
+}
+ AddGameTaken();
+
+   
+  
+ }
+
   const PopCheck = (ans) => {
     setpopCheck(true)
     setanswer(ans)
@@ -178,13 +273,14 @@ const recipee = recipe?.recipes;
         }
      }
     }
-   
-     console.log("completed: "+ completed)
+   //----------CHECK IF COMPLETED----------
+    
      if(currScore ===recipee?.length){
       setcompleted(true)
      // console.log( "finalScore: " + finalScore)
-     
-    }
+     console.log("completed: "+ completed)
+     //-------SUBMIT THE SCORE AND GET TAKEN DATE
+     }
    }
 
 
@@ -192,6 +288,15 @@ const recipee = recipe?.recipes;
       const currScore = score;
     if(corrects==="incorrect"){
      ans='incorrect'
+     if(repeat?.includes(currQuestion)){
+      for(let i = 0; i < repeat?.length; i++){
+       if(repeat[i]===currQuestion){
+           repeat?.splice(i, 1); 
+       }
+      }
+      }
+     
+   
      setRepeat([... repeat,currQuestion]);
 
      SetScore(ans,currScore);
@@ -199,24 +304,20 @@ const recipee = recipe?.recipes;
    
    }else if(corrects==="correct"){
    ans='correct'
-   
   
    SetScore(ans,currScore);
-  
    if(repeat?.includes(currQuestion)){
-   for(let i = 0; i < repeat?.length; i++){
-    if(repeat?.includes(currQuestion)){
-     
-        repeat?.splice(i, 1); 
-      
+    for(let i = 0; i < repeat?.length; i++){
+     if(repeat[i]===currQuestion){
+         repeat?.splice(i, 1); 
+     }
     }
-   }
-   }
-  
+    }
     PopCheck(ans)
+    
+   SetScore(ans,currScore);
    }
-   
-   console.log("ans"+ corrects)
+   console.log("repeat"+ repeat)
   
 
     }
@@ -231,34 +332,24 @@ const recipee = recipe?.recipes;
 
     for(let i = 0; i < selected?.length; i++){
       if(!arrayName?.includes(selected[i])){
-        //  setcorrect("incorrect")
-        //  const corrects ="incorrect"
-        //  Correct(corrects);
+     
           wrong=wrong+1;
       }else{
        
-        // if(repeat?.includes(currQuestion)){
-        //   for(let i = 0; i < repeat?.length; i++){
-        //    if(repeat?.includes(currQuestion)){
-           
-        //        repeat?.splice(i, 1); 
-             
-        //    }
-        //   }
-        //   }
-          // const corrects ="correct"
-          // Correct(corrects);
+       
           correct=correct+1;
       }
    
       if(wrong>0){
           setcorrect("incorrect")
          const corrects ="incorrect"
+       
          Correct(corrects);
+
       }else if(correct===arrayName?.length&& wrong===0){
             if(repeat?.includes(currQuestion)){
           for(let i = 0; i < repeat?.length; i++){
-           if(repeat?.includes(currQuestion)){
+           if(repeat[i]===currQuestion){
            
                repeat?.splice(i, 1); 
              
@@ -276,20 +367,7 @@ const recipee = recipe?.recipes;
     Correct(corrects);
    }
   
-   
-    
-    
 }
-
-
-
-  // useEffect(() => {
-
-
-  //     return () => ingredients?.destroy()
-    
-  // }, [running])
-  
 
   const [items, setList] = useState("");
    const list = selected;
@@ -316,18 +394,14 @@ const recipee = recipe?.recipes;
       
       CorrectAnswer(arrayName);
 
-       //console.log("correct?: "+ correct)
-      // console.log("current question: "+ currQuestion)
-      // console.log("number of recipe: "+ recipee?.length)
-      // console.log("wrong answered: "+ repeat)
        console.log("number taken: "+ taken)
      
   
 }
   
 const Continue = () => {
-AddSetScore()
-console.log(cats+" "+scName+" "+setNum+ " "+finalScore+" "+userId)
+ 
+console.log(cats+" "+scName+" "+setNum+ " "+finalScore+" "+userId+''+weekNum)
 }
 
 const Return = () => {
@@ -433,9 +507,43 @@ const Return = () => {
 }
 
 const ADD_SET_SCORE = gql `
-mutation ( $cats: String!, $scName: String!, $setNum: String!, $userId: String!, $finalScore: String!, $newdate: String!) {
-  insertSetScore(gameId:"6227003f9ac1104969591b20",  cName: $cats, scName: $scName, setNum: $setNum, userId: $userId, score: $finalScore, dateTaken: $newdate) {
+mutation ( $cats: String!, $scName: String!, $setNum: String! ,$diff: String!, $userId: String!, $finalScore: String!, $newdate: String!) {
+  insertSetScore(gameId:"6227003f9ac1104969591b20",  cName: $cats, scName: $scName, diff: $diff, setNum: $setNum, userId: $userId, score: $finalScore, dateTaken: $newdate) {
     id
+  }
+}
+`
+const ADD_GAMETAKEN = gql`
+mutation InsertGameTaken($userId: String, $cats: String, $scName: String,$diff: String!, $month: String, $day: String, $year: String, $weekNum: String) {
+  insertGameTaken(gameId:"6227003f9ac1104969591b20", userId: $userId, category: $cats, subCategory: $scName,  diff: $diff, month: $month, dayTaken: $day, yearTaken: $year, weekNum: $weekNum) {
+    id
+  }
+}
+`
+const ADD_TAKES = gql`
+mutation InsertTakes( $userId: String, $firstTake: String, $latestTake: String) {
+  insertTakes(gameId:"6227003f9ac1104969591b20", userId: $userId, firstTake: $firstTake, latestTake: $latestTake) {
+    id
+  }
+}
+`
+
+const ADD_SUBTAKEN = gql`
+mutation InsertSubTaken( $cats: String!, $scName: String!, $diff: String, $userId: String, $numTaken: String, $totalTakenScore: String) {
+  insertSubTaken(gameId:"6227003f9ac1104969591b20", cName: $cats, scName: $scName, diff: $diff, userId: $userId, numTaken: $numTaken, totalTakenScore: $totalTakenScore) {
+    id
+  }
+}
+`
+const FETCH_GAME_QUERY = gql`
+query  {
+  getFtIngredients {
+    id
+    takes {
+      userId
+      firstTake
+      latestTake
+    }
   }
 }
 `
@@ -450,11 +558,17 @@ query($cats:String!){
         imgUrl
         imgCc
         imgUrlCc
+        subTaken{
+          userId
+          diff
+          numTaken
+        }
         sets {
           id
           setNum
           userScore{
             id
+            diff
             userId
             score
             dateTaken

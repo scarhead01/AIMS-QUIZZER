@@ -11,8 +11,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { useMutation, useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import gql from "graphql-tag";
-import PopChecker from '../../components/PopChecker';
-
+import PopChecker2 from '../../components/PopChecker2';
 import jwtDecode from 'jwt-decode'
 
 const MainQuiz = () => {
@@ -36,16 +35,25 @@ const [popCheck, setpopCheck] = useState(false)
  const {cats,scName,setNum} = useParams();
  const [nextQuest, setnextQuest] = useState(false)
 const [answer, setanswer] = useState('')
+const [weekNum, setweekNum] = useState('')
+const [numTaken, setnumTaken] = useState('')
+const [totalTakenScore, settotalTakenScore] = useState('')
+const [firstTake, setfirstTake] = useState('')
+const [latestTake, setlatestTake] = useState('')
 
+const {diffs }=useParams()
 
 const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
 
 const userId = decodedToken?.id
+const diff=diffs
 const dateObj = new Date();
-const month = dateObj.getUTCMonth() + 1; //months from 1-12
-const day = dateObj.getUTCDate();
-const year = dateObj.getUTCFullYear();
-
+const months = dateObj.getUTCMonth() + 1; //months from 1-12
+const month = months.toString();
+const days = dateObj.getUTCDate();
+const day = days.toString();
+const years = dateObj.getUTCFullYear();
+const year = years.toString();
 const newdate = year + "/" + month + "/" + day;
 console.log(newdate)
 
@@ -59,16 +67,47 @@ console.log(newdate)
 
 );
 
+const { data:datas} = useQuery(FETCH_CATEGORY_QUERY,{
+   
+  variables: {cats},
+
+},);
+const { data:game} = useQuery(FETCH_GAME_QUERY);
+const numTakens = datas?.quizCategories?.find(o=>o.scName===scName)?.subTaken?.find(o=>o.userId===userId)?.numTaken;
+console.log(datas)
+
+const totalTakenScores = datas?.quizCategories?.find(o=>o.scName===scName)?.subTaken?.find(o=>o.userId===userId).totalTakenScore;
+const firstTaker =  datas?.quizCategories?.find(o=>o.scName===scName)?.sets?.find(o=>o.setNum===setNum)?.userScore?.find(o=>o.userId===userId);
+
+const firstTakes=game?.getQuizGames?.find(o=>o.id==="6227003f9ac1104969591b20")?.takes?.find(o=>o.userId===userId)?.firstTake;
+const latestTakes=game?.getQuizGames?.find(o=>o.id==="6227003f9ac1104969591b20")?.takes?.find(o=>o.userId===userId)?.latestTake;
+console.log(firstTakes)
+
+
 console.log(data)
 
-const {diffs }=useParams()
 const finalScores = firstScore;
 
 const finalScore = finalScores?.toString();
  
 const gameId = "6227003f9ac1104969591b20"
 const [AddSetScore,{error}] = useMutation(ADD_SET_SCORE,{    
-  variables:  {cats,scName,setNum,userId,finalScore,newdate},
+  variables:  {cats,scName,setNum,userId,diff,finalScore,newdate},
+  refetchQueries: [{ query: FETCH_CATEGORY_QUERY, variables:{cats} }]
+})
+
+const [AddGameTaken,] = useMutation(ADD_GAMETAKEN,{    
+  variables:  {cats,setNum,userId,diff,finalScore,month,day,year,weekNum},
+  refetchQueries: [{ query: FETCH_CATEGORY_QUERY, variables:{cats} }]
+})
+
+const [AddSubTaken] = useMutation(ADD_SUBTAKEN,{    
+  variables:  {cats,userId,diff,numTaken,totalTakenScore},
+  refetchQueries: [{ query: FETCH_CATEGORY_QUERY, variables:{cats} }]
+})
+
+const [AddTakes] = useMutation(ADD_TAKES,{    
+  variables:  {userId,firstTake,latestTake},
   refetchQueries: [{ query: FETCH_CATEGORY_QUERY, variables:{cats} }]
 })
 
@@ -98,9 +137,10 @@ const guesss = guess?.getQuiz?.quizCategories.find(o=>o.cName===cats)?.quizQuest
 
 
  const gChoices = [guesse?.cAnswer];
+ const qChoices =guesse[0]?.cAnswer
  const wChoices = guesse?.wAnswer?.map(o=>o.names);
  const choices = gChoices?.concat(wChoices);
-console.log(choices)
+console.log(qChoices)
  const Selected = (diff,imgurl,imgcc,imgccurl) => {
     setSelected([... selected,diff]);
     if(show === false){
@@ -135,12 +175,10 @@ console.log(choices)
           settaken(taken+1)
           setnextQuest(false)
        
-        }else{
-     setCurrQuestion(repeat[0])
-     setnextQuest(false)
-     settaken(taken+1)
-        }
+      }
    
+    } else if(repeat?.length<1&&score===guesss?.length){
+      setcompleted(true)
     }
     console.log('next question is'+ repeat[0])
 
@@ -155,9 +193,62 @@ console.log(choices)
  if(completed===true) {
    console.log(cats+" "+scName+" "+setNum+ " "+finalScore+" "+userId)
  // addSet()
+  
+ AddSetScore()
+ AddTakes()
+ AddSubTaken()
+ AddTaken()
 }
  }, [completed])
  
+
+ const AddTaken = () =>{
+ 
+  if(days<8){
+   
+     setweekNum('1');
+  }else if(days>7 && days<15){
+    
+    setweekNum('2');
+ }else if(days>14 && days<22){
+
+  setweekNum('3');
+  }else if(days>21 && days<29){
+  
+    setweekNum('4');
+  }else if(days>28 && days<32){
+   
+    setweekNum('5');
+  }
+if(!numTakens){
+setnumTaken('1')
+}else if(numTakens){
+  setnumTaken(numTakens+1)
+}
+if(!totalTakenScores){
+settotalTakenScore(finalScore)
+}else if(totalTakenScores){
+  setnumTaken(totalTakenScores+firstScore)
+}
+if(!firstTaker){
+if(!firstTakes){
+setfirstTake(firstScore)
+}else if(firstTakes){
+  setfirstTake(firstTakes+firstScore)
+}
+}
+if(!latestTakes){
+setlatestTake(firstScore)
+}else if(latestTakes){
+  setnumTaken(latestTakes+firstTake)
+}
+ AddGameTaken();
+
+   
+  
+ }
+ 
+
   const PopCheck = (ans) => {
     setpopCheck(true)
     setanswer(ans)
@@ -187,9 +278,16 @@ console.log(choices)
       const currScore = score;
     if(corrects==="incorrect"){
      ans='incorrect'
+     if(repeat?.includes(currQuestion)){
+      for(let i = 0; i < repeat?.length; i++){
+       if(repeat[i]===currQuestion){
+           repeat?.splice(i, 1); 
+       }
+      }
+      }
      setRepeat([... repeat,currQuestion]);
      SetScore(ans,currScore);
-     PopCheck()
+     PopCheck(ans)
    
    }else if(corrects==="correct"){
    ans='correct'
@@ -199,8 +297,7 @@ console.log(choices)
   
    if(repeat?.includes(currQuestion)){
    for(let i = 0; i < repeat?.length; i++){
-    if(repeat?.includes(currQuestion)){
-     
+    if(repeat[i]===currQuestion){
         repeat?.splice(i, 1); 
     }
    }
@@ -216,6 +313,13 @@ console.log(choices)
     if(selected){
       if(arrayName===selected){
       setcorrect(true)
+      for(let i = 0; i < repeat?.length; i++){
+        if(repeat[i]===currQuestion){
+        
+            repeat?.splice(i, 1); 
+          
+        }
+       }
         Correct("correct")
       }else{
           setcorrect(false)
@@ -224,7 +328,7 @@ console.log(choices)
    }  
 }
   const onSubmits = () =>{
-      const arrayName=guesse?.cAnswer;
+      const arrayName=qChoices;
       CorrectAnswer(arrayName);
        console.log("number taken: "+ taken)
 }
@@ -238,11 +342,11 @@ const Return = () => {
   AddSetScore()
 }
 
-  const arrayName = new Array();
+  // const arrayName = new Array();
   
-  for(let i = 0; i < gChoices?.length; i++){
-    arrayName.push(gChoices[i]?.iName)
-  }
+  // for(let i = 0; i < gChoices?.length; i++){
+  //   arrayName.push(gChoices[i]?.iName)
+  // }
 
   // console.log("correct answer: "+ arrayName )
   console.log("retake: "+ repeat )
@@ -325,16 +429,51 @@ const Return = () => {
                   {/* {modalOpen && <BasketPopup setOpenModal={setModalOpen} setList={setList} selects={list} />} */}
                   {modalOpen1 && <HintPopup setOpenModal1={setModalOpen1} />}
                   {modalOpen2 && <ImageModal setOpenModal={setModalOpen2} img={{imgUrl,imgCc,imgUrlCc}}  />}
-                  {popCheck && <PopChecker setpopChecks={setpopCheck} correct={answer} answer={arrayName} setnextQuests={setnextQuest}/>}
+                  {popCheck && <PopChecker2 setpopChecks={setpopCheck} correct={answer} answer={qChoices} setnextQuests={setnextQuest}/>}
   </FindGamesCon>
   )
   return display ;
 }
 
 const ADD_SET_SCORE = gql `
-mutation ( $cats: String!, $scName: String!, $setNum: String!, $userId: String!, $finalScore: String!, $newdate: String!) {
-  insertSetScore(gameId:"629c247d6a10ae7b11e3c2e2",  cName: $cats, scName: $scName, setNum: $setNum, userId: $userId, score: $finalScore, dateTaken: $newdate) {
+mutation ( $cats: String!,  $setNum: String!, $userId: String!, $finalScore: String!, $newdate: String!) {
+  insertSetScoreQ(gameId:"629c247d6a10ae7b11e3c2e2",  cName: $cats,  setNum: $setNum, userId: $userId, score: $finalScore, dateTaken: $newdate) {
     id
+  }
+}
+`
+
+const ADD_GAMETAKEN = gql`
+mutation InsertGameTakenQ($userId: String, $cats: String,$diff: String!, $month: String, $day: String, $year: String, $weekNum: String) {
+  insertGameTakenQ(gameId:"629c247d6a10ae7b11e3c2e2", userId: $userId, category: $cats,   diff: $diff, month: $month, dayTaken: $day, yearTaken: $year, weekNum: $weekNum) {
+    id
+  }
+}
+`
+const ADD_TAKES = gql`
+mutation InsertTakesQ( $userId: String, $firstTake: String, $latestTake: String) {
+  insertTakesQ(gameId:"629c247d6a10ae7b11e3c2e2", userId: $userId, firstTake: $firstTake, latestTake: $latestTake) {
+    id
+  }
+}
+`
+
+const ADD_SUBTAKEN = gql`
+mutation InsertSubTakenQ( $cats: String!, $diff: String, $userId: String, $numTaken: String, $totalTakenScore: String) {
+  insertSubTakenQ(gameId:"629c247d6a10ae7b11e3c2e2", cName: $cats,  diff: $diff, userId: $userId, numTaken: $numTaken, totalTakenScore: $totalTakenScore) {
+    id
+  }
+}
+`
+const FETCH_GAME_QUERY = gql`
+query  {
+  getQuizGames {
+    id
+    takes {
+      userId
+      firstTake
+      latestTake
+    }
   }
 }
 `
@@ -347,6 +486,18 @@ query($cats:String!){
      fName
      quizCategories {
        cName
+       subTaken{
+          userId
+          diff
+          numTaken
+        }
+        userScore{
+            id
+            diff
+            userId
+            score
+            dateTaken
+          }
        quizQuestions {
          question
          cAnswer
@@ -386,6 +537,7 @@ const FindGamesCon = styled.div`
 
 
 width: 100%;
+height:100% ;
 font-size: 12px;
 font-family: Grenze;
     font-style: normal;
@@ -550,7 +702,7 @@ position: relative;
 border-radius: 90px;
 height: 100%;
 right: 40px;
-bottom: -80px;
+
 padding: 10px 40px;
 border: none;
 box-shadow: 0 0 2px 1px rgba(0,0,0,0.2);
@@ -578,7 +730,7 @@ const HintCon = styled.div`
   flex-direction: column;
   width: 100px;
   height: -150px;
-  bottom: -90px;
+
   margin: auto;
   & h3 {
        padding: 5px 8px;

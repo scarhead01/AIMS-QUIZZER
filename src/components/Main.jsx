@@ -108,7 +108,7 @@ const Main = () => {
        {/* <Route path="/game/find/findmenu/Hard" element={<FindMenus />} /> */}
        <Route path="/game/guess/guessmenu/" element={<GuessMenus />} />
        <Route path="/game/quiz/quizmenu/" element={<QuizMenus />} />
-       <Route path="/game/find/findmenu/Easy/:cats/findgames/:scName/:setNum/" element={<FindGames />} />
+       <Route path="/game/find/findmenu/:diffs/:cats/findgames/:scName/:setNum/" element={<FindGames />} />
        <Route path="/game/find/findmenu/Hard/:cats/findgames/" element={<FindGamesHard />} />
        <Route path="/game/guess/guessmenu/:diffs/:cats/guessgame/" element={<GuessGameEasy />} />
        <Route path="/game/guess/guessmenu/:diffs/:cats/guessgames/:scName/:setNum/" element={<GuessGameEasy/>} />

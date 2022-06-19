@@ -17,6 +17,7 @@ gap: 0px;
 width: 100vw;
 left: 0px;
 height: 100vh;
+overflow:auto ;
 top:0px ;
 //bottom: -16px ;
 

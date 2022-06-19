@@ -51,6 +51,10 @@ const Dashboard = () => {
 
 
         </StatCon>
+
+    <h1> Statistics</h1>
+    <h2>Monitor your progress here!</h2>
+
        <Statistics/>
     </DashboardCon>;
   };
@@ -63,8 +67,19 @@ justify-content:center ;
 align-items:center ;
 width:100%;
 
-max-height:100vh;
-overflow: auto;
+max-height:100%;
+//overflow: auto;
+& h1{
+  margin:1.5rem auto ;
+  text-align:center ;
+  font-size: 23px ;
+  color: #fff;
+}
+& h2{
+  text-align:center ;
+  font-size: 16px ;
+  color: #ece4e4;
+}
 `
 const Con = styled.div`
 color: #d2c3c3;
@@ -104,33 +119,58 @@ width:100%;
 
 & .infos {
   margin-left: 1.5rem;
+ 
 }
 
 & .name {
   margin-bottom: 1rem;
+  margin-top:1rem ;
+  @media screen and ( max-width:438px){
+   position: relative;
+   top:-100px;
+   right:-150px ;
+}
+
 }
 & .name h2 {
   font-size: 1.3rem;
+  text-transform:capitalize ;
+  color: #ede0e0;
+  @media screen and ( max-width:438px){
+   position: relative;
+  
+   right:150px ;
+}
 }
 & .name h4 {
   font-size: .8rem;
-  color: #333
+  color: #ded4d4
 }
 
 & .text {
   font-size: .9rem;
   margin-bottom: 1rem;
+  @media screen and ( max-width:438px){
+   position: relative;
+   top: -100px;
+   right:-150px ;
+}
 }
 
 & .stats {
   text-align:center ;
   margin-bottom: 1rem;
+  @media screen and ( max-width:438px){
+   position: relative;
+   top: -100px;
+}
+ 
 }
 & .stats li {
   min-width: 5rem;
 }
 & .stats li h3 {
-  font-size: .99rem;
+  font-size: 1.4rem;
 }
 & .stats li h4 {
   font-size: .75rem;
@@ -178,12 +218,13 @@ margin:auto ;
 width:50% ;
 max-height: 100%;
 
+
 background: rgba(220, 198, 239, 0.32);
 border-radius: 10px;
-@media screen and ( max-width:468px){
+@media screen and ( max-width:438px){
    width: 350px;
 }
-@media screen and ( min-width:468px) and ( max-width:608px){
+@media screen and ( min-width:438px) and ( max-width:608px){
    width:485px;
 }
 @media screen and ( min-width:558px) and ( max-width:868px){

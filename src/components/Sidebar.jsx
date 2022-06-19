@@ -8,7 +8,7 @@ import {IoGameControllerSharp} from "react-icons/io5"
 import {ImStatsDots} from "react-icons/im"
 import {GiTrophy} from "react-icons/gi"
 import {GiHamburgerMenu} from "react-icons/gi"
-import {RiAccountCircleFill} from "react-icons/ri"
+import {FaUserEdit} from "react-icons/fa"
 import {IoSettings} from "react-icons/io5"
 import {IoClose} from "react-icons/io5"
 import logo from '../images/logo.png'
@@ -58,7 +58,7 @@ const Sidebar = () => {
           <h5>{loginData? loginData.email: "@kkazuha"}</h5>
         
       </ProfileName>
-      <AccountLink to='/account'>  <MdEdit /> Profile Info </AccountLink>      
+      {/* <AccountLink to='/account'>  <MdEdit /> Profile Info </AccountLink>       */}
           <LinkCon>
           <ul>
           {menuItems.map(menuItem => 
@@ -84,13 +84,16 @@ const Sidebar = () => {
       <Logo1 src={logo} >
          
       </Logo1>
+      <Border>
+
       <Profilepic src={loginData? loginData.picture:kazuha}/>
+      </Border>
   
   <ProfileName>{loginData? loginData.name: "Kazuha"}
       <h5>{loginData? loginData.email: "@kkazuha"}</h5>
     
   </ProfileName>
-  <AccountLink to='/account'>  <MdEdit /> <span>Profile Info</span>  </AccountLink>      
+  {/* <AccountLink to='/account'>  <MdEdit /> <span>Profile Info</span>  </AccountLink>       */}
       <LinkCon>
       <ul>
       {menuItems.map(menuItem => 
@@ -129,6 +132,7 @@ background: #E1C9FF;
 margin:0px ;
 
 `
+
 const SidebarCon = styled.div`
 grid-area: Sidebar;
 position: sticky;
@@ -310,6 +314,7 @@ const Profilepic = styled.img`
 height: 90px;
 width: 90px;
 border: 5px solid #CE9DFF;
+//box-shadow:0 0 5px 5px #c289d630 ;
 border-radius: 50%;
 display:block ;
 margin: auto;
@@ -320,6 +325,9 @@ margin: auto;
  margin-left:.5em ;
 
 }
+`
+const Border = styled.div`
+
 `
 const ProfileName = styled.div`
 
@@ -332,7 +340,7 @@ text-transform: capitalize;
     margin-top: 5px;
     font-weight: 500;
     font-size: 12px;
-    color: #7d46e2;
+    color: #2a0078;
     text-transform: lowercase; 
     @media screen and (min-width: 560px) and (max-width:768px) {
   /* For mobile phones: */
@@ -434,10 +442,10 @@ list-style: none;
 const menuItems = [
   {id:1,label:'Dashboard',to:'/',class:'',icon: <MdDashboard /> },
   {id:2,label:'Game',to:'game',class:'active',icon: <IoGameControllerSharp /> },
-  {id:3,label:'Statistics',to:'/statistics',class:'',icon: <ImStatsDots />},
+  {id:3,label:'Account',to:'/account',class:'',icon: <FaUserEdit />},
   {id:4,label:'Rank',to:'/rank',class:'',icon: <GiTrophy />},
  
-  {id:5,label:'Setting',to:'/setting',class:'',icon: <IoSettings/>}
+ /// {id:5,label:'Setting',to:'/setting',class:'',icon: <IoSettings/>}
 ];
 
 const Icon= styled.i`
