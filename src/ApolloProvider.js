@@ -7,10 +7,10 @@ import {ApolloProvider} from '@apollo/react-hooks';
 import {setContext}  from 'apollo-link-context';
 
 const httpLink = createHttpLink({
-    uri:'http://localhost:5000/graphql'||'https://aimsquizzer.herokuapp.com/graphql'
+    uri:'https://aimsquizzer.herokuapp.com/graphql'
 
 });
-//'https://aimsquizzer.herokuapp.com/graphql'|| 
+//'https://aimsquizzer.herokuapp.com/graphql'|| 'http://localhost:5000/graphql'
 
 const authLink = setContext(()=>{
     const token = localStorage.getItem('jwtToken');
