@@ -14,15 +14,16 @@ import gql from "graphql-tag";
 import PopChecker from '../../components/PopChecker';
 
 import jwtDecode from 'jwt-decode'
+import FindGameChoices from './FindGameChoices';
 
-const FindGameCon = () => {
+const FindGameCon = ({recipe},loading,setCurrQuestions) => {
     const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen1, setModalOpen1] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
   const [score, setScore] = useState(0)
   const [repeat, setRepeat] = useState([])
   const [selected, setSelected] = useState([])
-  const [currQuestion, setCurrQuestion] = useState(0);
+const [currQuestion, setCurrQuestion] = useState(0);
  const [correct, setcorrect] = useState("")
  const [imgUrl, setimgUrl] = useState("")
  const [imgCc, setimgCc] = useState("")
@@ -44,7 +45,7 @@ const [numTaken, setnumTaken] = useState('')
 const [totalTakenScore, settotalTakenScore] = useState('')
 const [firstTake, setfirstTake] = useState('')
 const [latestTake, setlatestTake] = useState('')
-
+const [ingredientcc, setchoices] = useState([])
 
 
 
@@ -63,20 +64,21 @@ const year = years.toString();
 const newdate = year + "/" + month + "/" + day;
 console.log(newdate)
 
- const {loading, data:{getRecipes: recipe}=[]} = useQuery(FETCH_RECIPE_QUERY,{
+//  const {loading, data:{getRecipes: recipe}=[]} = useQuery(FETCH_RECIPE_QUERY,{
  
-  variables: {cats,scName,setNum},
+//   variables: {cats,scName,setNum},
   
 
-},
+// },
 
 
-);
+//);
 const { data} = useQuery(FETCH_CATEGORY_QUERY,{
    
   variables: {cats},
 
 },);
+
 const { data:game} = useQuery(FETCH_GAME_QUERY);
 const numTakens = data?.subCategories?.find(o=>o.scName===scName)?.subTaken?.find(o=>o.userId===userId)?.numTaken;
 console.log(data)
@@ -88,6 +90,30 @@ const firstTakes=game?.getFtIngredients?.find(o=>o.id==="6227003f9ac1104969591b2
 const latestTakes=game?.getFtIngredients?.find(o=>o.id==="6227003f9ac1104969591b20")?.takes?.find(o=>o.userId===userId)?.latestTake;
 console.log(firstTakes)
 
+useEffect(() => {
+   
+  setTimeout(() => { 
+    
+    if(loading){
+    settaken(1)
+   // Choices();
+  } }, 200);
+
+   
+  }, [])
+// useEffect(() => {
+   
+//   setTimeout(() => { 
+    
+//     if(loading){
+//     //settaken(1)
+//     Choices();
+//   } }, 300);
+
+   
+//  }, [taken])
+
+ 
 const finalScores = firstScore;
 
 const finalScore = finalScores?.toString();
@@ -121,16 +147,6 @@ const recipee = recipe?.recipes;
 //console.log(recipee)
  const recipes = recipe?.recipes[currQuestion];
 
- useEffect(() => {
-   
-  setTimeout(() => { 
-    
-    if(!loading){
-    settaken(1)
-  } }, 300);
-
-   
- }, [])
  
   
  
@@ -143,7 +159,17 @@ const recipee = recipe?.recipes;
  const wingredients = recipes?.wIngredients;
  const ingredientss = ringredients?.concat(wingredients);
 
+//  useEffect(() => {
 
+//    Choices()
+//  }, [])
+ 
+
+//  function Choices(){
+//   const ingredients=ingredientss?.sort(()=> Math.random() - 0.6)
+//  setchoices(ingredients)
+//  }
+const ingredients=useMemo(()=>ingredientss?.sort(()=> Math.random() - 0.6),[taken])
  const Selected = (diff,imgurl,imgcc,imgccurl) => {
     setSelected([... selected,diff]);
     if(show === false){
@@ -161,8 +187,7 @@ const recipee = recipe?.recipes;
  //console.log("empty: "+ empty)
   
   //console.log(ringredients)
-  const ingredients=useMemo(()=>ingredientss?.sort(()=> Math.random() - 0.6),[taken])
- 
+
   // -------CHECK/NEXT FUNCTION--------
 
   let ans='';
@@ -174,12 +199,14 @@ const recipee = recipe?.recipes;
     if(currQuestion<recipee?.length-1 && taken < recipee?.length){
       
          setCurrQuestion(currQuestion+1)
+         setCurrQuestions(currQuestion+1)
          settaken(taken+1)
          setnextQuest(false)
        }
     else if(taken >= recipee?.length || repeat.length>0){
     
      setCurrQuestion(repeat[0])
+     setCurrQuestions(repeat[0])
      setnextQuest(false)
      settaken(taken+1)
         
@@ -457,35 +484,36 @@ const Return = () => {
                 bottom: -3
               }}
                />}</ShowButton>
-      <IngredientsCon>
+                {/* <FindGameChoices ingredients={ingredients} setimgUrl={setimgUrl} setimgCc={setimgCc} setimgUrlCc={setimgUrlCc} setModalOpen2={setModalOpen2} setSelected={setSelected} selected={selected} lists={list} show={show}/> */}
+                <IngredientsCon>
 
-      {ingredients?.map(menu=>
-     
-               <IngredientList key={menu.iName} 
-               onClick={() =>{
-                if(show === true){
-                  setimgUrl(menu.imgUrl)
-                  setimgCc(menu.imgCc)
-                  setimgUrlCc(menu.imgUrlCc)
-                    setModalOpen2(true);
-                  
-                  }else{
-                setSelected([... selected,menu.iName]);
-              
-                  }
-               // Attr("disabled", true);
-              
-                //setimgUrlCc(imgccurl)
-               }}
-                className={list.includes(menu.iName)?"selected":""} 
-               
-                >
-                   <h1>{menu.iName}</h1>
-                   </IngredientList> 
-                
-                  )}    
-              
-                  </IngredientsCon>
+{ ingredients?.map(menu=>
+
+         <IngredientList key={menu.iName} 
+         onClick={() =>{
+          if(show === true){
+            setimgUrl(menu.imgUrl)
+            setimgCc(menu.imgCc)
+            setimgUrlCc(menu.imgUrlCc)
+              setModalOpen2(true);
+            
+            }else{
+          setSelected([... selected,menu.iName]);
+        
+            }
+         // Attr("disabled", true);
+        
+          //setimgUrlCc(imgccurl)
+         }}
+          className={list?.includes(menu.iName)?"selected":""} 
+         
+          >
+             <h1>{menu.iName}</h1>
+             </IngredientList> 
+          
+            )}    
+        
+            </IngredientsCon>
                   <Footer>
                   <BasketPic src={basket}  onClick={() => {
           setModalOpen(true);
@@ -645,24 +673,7 @@ flex-direction: column;
 border-radius:10px ;
 box-shadow: 0 0 2px 2px rgba(0,0,0,0.3) ;
 `
-const BasketPic = styled.img`
-align-items: left;
-height: 13em;
-width: 13em;
-position: relative;
-bottom: -2em;
-margin: auto;
-@media screen and (max-width: 560px) {
-  height: 10em;
-width: 10em;
-}
-`
-const HintPic = styled.img`
-position: relative;
-margin: auto;
-height: 35px;
-width: 35px;
-`
+
 const IngredientsCon = styled.div`
     margin: auto;
     width: 80%;
@@ -698,6 +709,24 @@ cursor: pointer;
   }
 `
 
+const BasketPic = styled.img`
+align-items: left;
+height: 13em;
+width: 13em;
+position: relative;
+bottom: -2em;
+margin: auto;
+@media screen and (max-width: 560px) {
+  height: 10em;
+width: 10em;
+}
+`
+const HintPic = styled.img`
+position: relative;
+margin: auto;
+height: 35px;
+width: 35px;
+`
 const IngredientList1 = styled.button`
    color: white;
 font-size: 18px;
