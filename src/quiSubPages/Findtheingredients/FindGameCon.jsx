@@ -107,7 +107,7 @@ useEffect(() => {
     
     //settaken(1)
   setShowC(true)
-  }, 1500);
+  }, 2000);
 
    
  }, [])
